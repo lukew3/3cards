@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import Nav from '../components/nav';
 import styles from '../styles/Create.module.css'
 
 const CreateTerm = (props: { id: string}) => {
@@ -30,11 +31,7 @@ const Create: NextPage = () => {
         <meta name="description" content="Create a flash card set with 3cards" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-      <nav>
-        <h1>3cards</h1>
-      </nav>
-
+      <Nav />
       <main className={styles.main}>
         <h3>Create Set</h3>
         <div className={styles.terms}>
