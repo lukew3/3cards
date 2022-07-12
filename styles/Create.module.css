@@ -19,6 +19,7 @@
   flex-direction: column;
   width: 100%;
   background-color: lightgrey;
+  border: 1px solid grey;
   padding: 1rem;
   border-radius: 0.5rem;
   margin: 10px 0;
@@ -36,7 +37,7 @@
 
 .term_ops * {
   margin: 0 5px;
-  background-color: grey;
+  background-color: #C4C4C4;
   padding: 3px;
   border-radius: 3px;
   width: 25px;
@@ -67,4 +68,16 @@
   border-radius: 5px;
   cursor: pointer;
   max-width: 1200px;
+  border: 1px solid grey;
+}
+
+.publish_button {
+  background-color: lightgrey;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  float: right;
+  cursor: pointer;
+  background-color: #5cb85c;
+  width: fit-content
 }

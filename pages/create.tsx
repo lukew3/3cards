@@ -33,13 +33,13 @@ const CreateTerm = (props: {
       <div className={styles.term_input}>
         <input 
           type="text" 
-          placeholder="term" 
+          placeholder="Term" 
           onChange={(e) => props.setTermValue(props.id, e.target.value)}
           value={props.termPair[0]}
         />
         <input 
           type="text"
-          placeholder="definition"
+          placeholder="Definition"
           onChange={(e) => props.setDefValue(props.id, e.target.value)}
           value={props.termPair[1]}
         />
@@ -121,13 +121,16 @@ const Create: NextPage = () => {
               );
             })
           }
-        </div>
-        <div 
-          className={styles.addItem} 
-          tabIndex={0}
-          onClick={addTerm}
-        >
+          <div 
+            className={styles.addItem} 
+            tabIndex={0}
+            onClick={addTerm}
+          >
           <p>Add item +</p>
+          </div>
+          <div className={styles.publish_button}>
+            Publish
+          </div>
         </div>
       </main>
     </div>
