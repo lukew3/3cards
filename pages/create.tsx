@@ -11,14 +11,20 @@ const CreateTerm = (props: {
   deleteTerm : (id: number) => void
   setDefValue : (id : number, value: string) => void,
   setTermValue : (id : number, value: string) => void,
+  incTermPos : (id: number) => void,
+  decTermPos : (id: number) => void,
 }) => {
   return(
     <div className={styles.term}>
       <div className={styles.term_header}>
         <div>{props.id + 1}</div>
         <div className={styles.term_ops}>
-          <div>↑</div>
-          <div>↓</div>
+          <div
+            onClick={() => props.incTermPos(props.id)}
+          >↓</div>
+          <div
+            onClick={() => props.decTermPos(props.id)}
+          >↑</div>
           <div
             onClick={() => props.deleteTerm(props.id)}
           >X</div>
@@ -68,6 +74,26 @@ const Create: NextPage = () => {
     setTerms(newTerms)
   }
 
+  const swapTerms = (index1 : number, index2 : number) => {
+    let newTerms = [...terms];
+    let temp = newTerms[index1];
+    newTerms[index1] = newTerms[index2];
+    newTerms[index2] = temp;
+    setTerms(newTerms);
+  }
+
+  const incTermPos = (index : number) => {
+    if (index < terms.length - 1) {
+      swapTerms(index, index + 1);
+    }
+  }
+
+  const decTermPos = (index : number) => {
+    if (index > 0) {
+      swapTerms(index, index - 1);
+    }
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -89,6 +115,8 @@ const Create: NextPage = () => {
                   setTermValue={setTermValue}
                   setDefValue={setDefValue}
                   deleteTerm={deleteTerm}
+                  incTermPos={incTermPos}
+                  decTermPos={decTermPos}
                 />
               );
             })
