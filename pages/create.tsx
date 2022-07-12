@@ -25,10 +25,10 @@ const CreateTerm = (props: { id: number}) => {
 }
 
 const Create: NextPage = () => {
-  const [terms, setTerms] = useState([[], []]);
+  const [terms, setTerms] = useState([['', ''], ['', '']]);
 
   const addTerm = () => {
-    setTerms(state => [...state, []]);
+    setTerms(state => [...state, ['', '']]);
   }
 
   return (
