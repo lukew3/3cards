@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import React, { useState } from 'react';
 import Nav from '../components/nav';
 import styles from '../styles/Create.module.css'
 
@@ -24,6 +25,12 @@ const CreateTerm = (props: { id: number}) => {
 }
 
 const Create: NextPage = () => {
+  const [terms, setTerms] = useState([[], []]);
+
+  const addTerm = () => {
+    setTerms(state => [...state, []]);
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -36,7 +43,7 @@ const Create: NextPage = () => {
         <h3>Create Set</h3>
         <div className={styles.terms}>
           {
-            [{}, {}].map((_, index) => {
+            terms.map((_, index) => {
               return(
                 <CreateTerm
                   key={index+1}
@@ -46,7 +53,11 @@ const Create: NextPage = () => {
             })
           }
         </div>
-        <div className={styles.addItem} tabIndex={0}>
+        <div 
+          className={styles.addItem} 
+          tabIndex={0}
+          onClick={addTerm}
+        >
           <p>Add item +</p>
         </div>
       </main>
