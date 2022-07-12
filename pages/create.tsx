@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Nav from '../components/nav';
 import styles from '../styles/Create.module.css'
 
-const CreateTerm = (props: { id: string}) => {
+const CreateTerm = (props: { id: number}) => {
   return(
     <div className={styles.term}>
       <div className={styles.term_header}>
@@ -35,12 +35,16 @@ const Create: NextPage = () => {
       <main className={styles.main}>
         <h3>Create Set</h3>
         <div className={styles.terms}>
-          <CreateTerm 
-            id="1"
-          />
-          <CreateTerm 
-            id="2"
-          />
+          {
+            [{}, {}].map((_, index) => {
+              return(
+                <CreateTerm
+                  key={index+1}
+                  id={index+1}
+                />
+              );
+            })
+          }
         </div>
         <div className={styles.addItem} tabIndex={0}>
           <p>Add item +</p>
