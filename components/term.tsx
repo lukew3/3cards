@@ -11,8 +11,8 @@ const Term = (props: {
       </div>
       <div className={styles.term_input}>
         <input 
-          type="text" 
-          placeholder="Term" 
+          type="text"
+          placeholder="Term"
           value={props.termPair[0]}
           disabled
         />

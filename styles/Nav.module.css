@@ -1,3 +1,16 @@
+.nav_cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .title_link {
+    cursor: pointer;
+}
+
+.login_text {
+    display: flex;
+    align-items: center;
     cursor: pointer;
 }
