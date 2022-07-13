@@ -10,13 +10,14 @@ import styles from '../../styles/Create.module.css'
 const Set: NextPage = () => {
   const arweave = Arweave.init({});
   const [termsRetrieved, setTermsRetrieved] = useState(false);
-  const [terms, setTerms] = useState([['mydef', 'myval'], ['', '']]);
+  const [terms, setTerms] = useState([['', ''], ['', ''], ['', '']]);
   const router = useRouter();
   const tx_id : string = router.query.tx_id?.toString() || '';
 
   setTimeout(() => {
     if (!termsRetrieved) {
       console.log("Loading terms");
+      if (tx_id == '') return;
       arweave.transactions.getData(tx_id, {decode: true, string: true}).then(data => {
         console.log(data);
         setTermsRetrieved(true);
@@ -25,7 +26,7 @@ const Set: NextPage = () => {
         console.log(err);
       })
     }
-  }, 500)
+  }, 0)
 
   return (
     <div className={styles.container}>
