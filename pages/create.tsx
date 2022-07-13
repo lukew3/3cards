@@ -1,13 +1,27 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Arweave from 'arweave';
 import React, { useState } from 'react';
 import Nav from '../components/nav';
 import CreateTerm from '../components/createTerm';
 import styles from '../styles/Create.module.css'
 
 const Create: NextPage = () => {
+  const arweave = Arweave.init({});
   const [terms, setTerms] = useState([['', ''], ['', '']]);
+  
+  const publishSet = async () => {
+    console.log(JSON.stringify(terms));
+    const tx = await arweave.createTransaction({
+      data: JSON.stringify(terms)
+    });
+    tx.addTag('App-Name', '3cards');
+    tx.addTag('Content-Type', 'application/json');
+    tx.addTag('Version', '0.0.1');
+    await arweave.transactions.sign(tx);
+    await arweave.transactions.post(tx);
+    console.log(tx.id);
+  }
 
   const addTerm = () => {
     setTerms(state => [...state, ['', '']]);
@@ -86,7 +100,10 @@ const Create: NextPage = () => {
           >
             <p>Add item +</p>
           </div>
-          <div className={styles.publish_button}>
+          <div 
+            className={styles.publish_button}
+            onClick={publishSet}
+          >
             Publish
           </div>
         </div>
