@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Router from 'next/router';
 import Arweave from 'arweave';
 import React, { useState } from 'react';
 import Nav from '../components/nav';
@@ -18,9 +19,13 @@ const Create: NextPage = () => {
     tx.addTag('App-Name', '3cards');
     tx.addTag('Content-Type', 'application/json');
     tx.addTag('Version', '0.0.1');
+    // Unix-Time tag?
     await arweave.transactions.sign(tx);
     await arweave.transactions.post(tx);
     console.log(tx.id);
+    Router.push({
+      pathname: '/set',
+    });
   }
 
   const addTerm = () => {
