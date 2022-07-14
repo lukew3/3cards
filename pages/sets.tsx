@@ -23,9 +23,9 @@ const Set: NextPage = () => {
   const fetchSets = async () => {
     let owners_string = router.query.owner ? `owners: ["${router.query.owner}"]` : '';
     const query_string = `{
-      ${owners_string}
       transactions(
-        first: 10,
+        first: 10
+        ${owners_string}
         tags: [
           {
             name: "Content-Type",
@@ -63,6 +63,7 @@ const Set: NextPage = () => {
       setSets(newSets);
       console.log(newSets);
     }).catch(err => {
+      setSets([]);
       console.log(err);
     })
   }

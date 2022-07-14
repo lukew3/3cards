@@ -7,8 +7,7 @@ const Nav = () => {
 
   const renderMySetsLink = () => {
     if (address !== '') {
-      const myURL = `/sets?owner=${address}`;
-      return <Link href={myURL}><p>My Sets</p></Link>;
+      return <Link href={{pathname: '/sets', query: {owner: address}}}><p>My Sets</p></Link>;
     }
   }
 
