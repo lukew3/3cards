@@ -1,5 +1,10 @@
-# 3cards
+<p align="center">
+  <a href="https://lukew3-3cardss.netlify.app">
+    <img src="https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg" height="128">
+  </a>
+</p>
 
+# 3cards
 Flashcards on web3. Powered by arweave, resistant to authoritative control.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
