@@ -9,6 +9,7 @@ import styles from '../styles/Create.module.css'
 
 const Create: NextPage = () => {
   const arweave = Arweave.init({});
+  const [title, setTitle] = useState('');
   const [terms, setTerms] = useState([['', ''], ['', '']]);
   
   const publishSet = async () => {
@@ -17,8 +18,9 @@ const Create: NextPage = () => {
       data: JSON.stringify(terms)
     });
     tx.addTag('App-Name', '3cards');
+    tx.addTag('Title', title);
     tx.addTag('Content-Type', 'application/json');
-    tx.addTag('Version', '0.0.1');
+    tx.addTag('Version', '0.0.2');
     // Unix-Time tag?
     await arweave.transactions.sign(tx);
     await arweave.transactions.post(tx);
@@ -81,6 +83,13 @@ const Create: NextPage = () => {
       <Nav />
       <main className={styles.main}>
         <h3>Create Set</h3>
+        <input
+          className={styles.title_input}
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
         <div className={styles.terms}>
           {
             terms.map((_, index) => {

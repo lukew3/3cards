@@ -9,6 +9,15 @@
   align-items: center;
 }
 
+.title_input {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 14pt;
+}
+
 .terms {
   width: 100%;
   max-width: 1200px;

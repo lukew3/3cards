@@ -9,6 +9,7 @@ import styles from '../../styles/Create.module.css'
 
 const Set: NextPage = () => {
   const arweave = Arweave.init({});
+  const [title, setTitle] = useState('My Set');
   const [termsRetrieved, setTermsRetrieved] = useState(false);
   const [terms, setTerms] = useState([['', ''], ['', ''], ['', '']]);
   const router = useRouter();
@@ -18,10 +19,17 @@ const Set: NextPage = () => {
     if (!termsRetrieved) {
       console.log("Loading terms");
       if (tx_id == '') return;
-      arweave.transactions.getData(tx_id, {decode: true, string: true}).then(data => {
-        console.log(data);
+      arweave.transactions.get(tx_id).then((tx) => {
+        // TODO: Ensure data is valid list of pairs first
         setTermsRetrieved(true);
-        setTerms(JSON.parse(data.toString()));
+        setTerms(JSON.parse(tx.get('data', {decode: true, string: true})));
+        tx.get('tags').forEach((tag : {name : string, value : string}) => {
+          console.log(tag);
+          let key = tag.get('name', {decode: true, string: true});
+          if (key == 'Title') {
+            setTitle(tag.get('value', {decode: true, string: true}));
+          }
+        })
       }).catch(err => {
         console.log(err);
       })
@@ -38,6 +46,7 @@ const Set: NextPage = () => {
       <Nav />
       <main className={styles.main}>
         <h3>View Set</h3>
+        <h4>{ title }</h4>
         <div className={styles.terms}>
           {
             terms.map((_, index) => {

@@ -46,6 +46,10 @@ const Set: NextPage = () => {
             block {
               timestamp
             }
+            tags {
+              name
+              value
+            }
           }
         }
       }
@@ -57,7 +61,7 @@ const Set: NextPage = () => {
           tx_id: edge.node.id,
           timestamp: edge.node.block.timestamp,
           owner_address: edge.node.owner.address,
-          title: 'My Set'
+          title: edge.node.tags.find((tag : { name : string, value : string}) => tag.name === 'Title')?.value || 'My Set',
         })
       })
       setSets(newSets);
