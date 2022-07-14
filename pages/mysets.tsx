@@ -1,25 +1,31 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Arweave from 'arweave';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Nav from '../components/nav';
-import Term from '../components/term';
+import Link from 'next/link';
 import styles from '../styles/Create.module.css'
 
 interface SetData {
   tx_id: string,
   owner_address: string,
   timestamp: string,
+  title: string,
 }
 
 const SetInfo = (props: {
   id: number,
   set: SetData
 }) => {
+  const buildSetLink = () => {
+    return `/set/${ props.set.tx_id }`
+  }
+  
   return(
     <div>
-      { props.set.tx_id }
+      <Link href={buildSetLink()}>
+        { props.set.title }
+      </Link>
     </div>
   )
 }
@@ -28,8 +34,6 @@ const Set: NextPage = () => {
   const arweave = Arweave.init({});
   const [setsRetrieved, setSetsRetrieved] = useState(false);
   const [sets, setSets] = useState<SetData[]>([])
-  const router = useRouter();
-  const tx_id : string = router.query.tx_id?.toString() || '';
 
   const fetchSets = async () => {
     let user_address = await window.arweaveWallet.getActiveAddress().catch(err => {
@@ -70,7 +74,8 @@ const Set: NextPage = () => {
         newSets.push({
           tx_id: edge.node.id,
           timestamp: edge.node.block.timestamp,
-          owner_address: edge.node.owner.address
+          owner_address: edge.node.owner.address,
+          title: 'My Set'
         })
       })
       setSets(newSets);
