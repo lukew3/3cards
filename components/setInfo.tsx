@@ -13,7 +13,7 @@ const SetInfo = (props: {
   set: SetData
 }) => {
   const buildSetLink = () : string => {
-    return `/set/${ props.set.tx_id }`
+    return `/set?tx_id=${ props.set.tx_id }`
   }
 
   const buildAddressLink = () : string => {

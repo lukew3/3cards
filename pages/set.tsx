@@ -3,9 +3,9 @@ import Head from 'next/head'
 import Arweave from 'arweave';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import Nav from '../../components/nav';
-import Term from '../../components/term';
-import styles from '../../styles/Create.module.css'
+import Nav from '../components/nav';
+import Term from '../components/term';
+import styles from '../styles/Create.module.css'
 
 const Set: NextPage = () => {
   const arweave = Arweave.init({});
@@ -23,7 +23,7 @@ const Set: NextPage = () => {
         // TODO: Ensure data is valid list of pairs first
         setTermsRetrieved(true);
         setTerms(JSON.parse(tx.get('data', {decode: true, string: true})));
-        tx.get('tags').forEach((tag : {name : string, value : string}) => {
+        tx['tags'].forEach((tag : any) => {
           console.log(tag);
           let key = tag.get('name', {decode: true, string: true});
           if (key == 'Title') {
