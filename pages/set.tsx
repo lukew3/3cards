@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Arweave from 'arweave';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import Nav from '../components/nav';
 import Term from '../components/term';
 import styles from '../styles/Create.module.css'
 
@@ -47,7 +46,6 @@ const Set: NextPage = () => {
         <meta name="description" content="Create a flash card set with 3cards" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
       <main className={styles.main}>
         <h3>View Set</h3>
         <h4>{ title }</h4>
