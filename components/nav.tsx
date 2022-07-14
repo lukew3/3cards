@@ -3,10 +3,13 @@ import styles from '../styles/Nav.module.css'
 import { useEffect, useState } from 'react';
 
 const Nav = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [address, setAddress] = useState('');
 
-  const renderMySets = () => {
-    if (loggedIn) return <Link href='/mysets'><p>My Sets</p></Link>;
+  const renderMySetsLink = () => {
+    if (address !== '') {
+      const myURL = `/sets?owner=${address}`;
+      return <Link href={myURL}><p>My Sets</p></Link>;
+    }
   }
 
   return (
@@ -15,13 +18,16 @@ const Nav = () => {
         <h1 className={styles.title_link}>3cards</h1>
       </Link>
       <div className={styles.nav_right}>
-        {renderMySets()}
+        <Link href='/sets'>
+          <p>Find Sets</p>
+        </Link>
+        {renderMySetsLink()}
         <Link href='/create'>
           <p>Create Set</p>
         </Link>
         <NavLogin 
-          loggedIn={loggedIn}
-          setLoggedIn={setLoggedIn}
+          loggedIn={Boolean(address)}
+          setAddress={setAddress}
         />
       </div>
     </nav>
@@ -30,21 +36,20 @@ const Nav = () => {
 
 const NavLogin = (props: {
   loggedIn: boolean,
-  setLoggedIn: (loggedIn: boolean) => void
+  setAddress: (address: string) => void
 }) => {
 
   const connectWallet = async () => {
     if (props.loggedIn) {
       window.arweaveWallet?.disconnect();
-      props.setLoggedIn(false);
+      props.setAddress('');
     } else {
       if (window.arweaveWallet == undefined) {
         alert('Arconnect not installed. Go to https://arconnnect.io to get started.');
       } else {
         await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION']);
-        window.arweaveWallet.getActiveAddress().then(address => {
-          props.setLoggedIn(true);
-          console.log(address);
+        window.arweaveWallet.getActiveAddress().then((address) => {
+          props.setAddress(address);
         }).catch(err => {
           console.log(err);
         })
@@ -56,10 +61,10 @@ const NavLogin = (props: {
     setTimeout(() => {
       window.arweaveWallet?.getActiveAddress().then(address => {
         if (address) {
-          props.setLoggedIn(true);
+          props.setAddress(address);
         }
       }).catch(() => {
-        props.setLoggedIn(false);
+        props.setAddress('');
       })
     }, 0);
   })

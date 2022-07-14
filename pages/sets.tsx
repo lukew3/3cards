@@ -2,9 +2,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Arweave from 'arweave';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router'
 import Nav from '../components/nav';
 import SetInfo from '../components/setInfo';
-import styles from '../styles/Create.module.css'
+import styles from '../styles/Create.module.css';
 
 interface SetData {
   tx_id: string,
@@ -15,18 +16,16 @@ interface SetData {
 
 const Set: NextPage = () => {
   const arweave = Arweave.init({});
+  const router = useRouter();
   const [setsRetrieved, setSetsRetrieved] = useState(false);
   const [sets, setSets] = useState<SetData[]>([])
 
   const fetchSets = async () => {
-    let user_address = await window.arweaveWallet.getActiveAddress().catch(err => {
-      console.log('address not found');
-      return;
-    });
+    let owners_string = router.query.owner ? `owners: ["${router.query.owner}"]` : '';
     const query_string = `{
+      ${owners_string}
       transactions(
         first: 10,
-        owners: ["${user_address}"],
         tags: [
           {
             name: "Content-Type",
@@ -81,13 +80,13 @@ const Set: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>View Set - 3cards</title>
+        <title>Find Sets - 3cards</title>
         <meta name="description" content="Create a flash card set with 3cards" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
       <main className={styles.main}>
-        <h3>My Sets</h3>
+        <h3>Find Sets</h3>
         <div className={styles.terms}>
           {
             sets.map((set, index) => {
