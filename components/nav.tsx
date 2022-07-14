@@ -18,18 +18,26 @@ const NavLogin = () => {
 
   const connectWallet = async () => {
     if (loggedIn) {
-      window.arweaveWallet.disconnect();
+      window.arweaveWallet?.disconnect();
+      setLoggedIn(false);
     } else {
-      await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION']);
-      let address = await window.arweaveWallet.getActiveAddress();
-      console.log(address);
+      if (window.arweaveWallet == undefined) {
+        alert('Arconnect not installed. Go to https://arconnnect.io to get started.');
+      } else {
+        await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION']);
+        window.arweaveWallet.getActiveAddress().then(address => {
+          setLoggedIn(true);
+          console.log(address);
+        }).catch(err => {
+          console.log(err);
+        })
+      }
     }
-    setLoggedIn(!loggedIn);
   }
 
   useEffect(() => {
     setTimeout(() => {
-      window.arweaveWallet.getActiveAddress().then(address => {
+      window.arweaveWallet?.getActiveAddress().then(address => {
         if (address) {
           setLoggedIn(true);
         }
@@ -44,7 +52,7 @@ const NavLogin = () => {
       className={styles.login_text}
       onClick={connectWallet}
     >
-      {loggedIn ? 'Logout' : 'Login'}
+      {loggedIn ? 'Logout' : 'Login with ArConnect'}
     </div>
   )
 }
