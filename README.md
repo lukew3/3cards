@@ -5,7 +5,7 @@
 </p>
 
 # 3cards
-Flashcards on web3. Powered by arweave, resistant to authoritative control.
+Flashcards on web3. Permanently stored flashcards owned by you and resistant to authoritative control. Powered by arweave. 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
