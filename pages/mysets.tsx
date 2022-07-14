@@ -3,31 +3,14 @@ import Head from 'next/head'
 import Arweave from 'arweave';
 import { useEffect, useState } from 'react';
 import Nav from '../components/nav';
-import Link from 'next/link';
+import SetInfo from '../components/setInfo';
 import styles from '../styles/Create.module.css'
 
 interface SetData {
   tx_id: string,
   owner_address: string,
-  timestamp: string,
+  timestamp: number,
   title: string,
-}
-
-const SetInfo = (props: {
-  id: number,
-  set: SetData
-}) => {
-  const buildSetLink = () => {
-    return `/set/${ props.set.tx_id }`
-  }
-  
-  return(
-    <div>
-      <Link href={buildSetLink()}>
-        { props.set.title }
-      </Link>
-    </div>
-  )
 }
 
 const Set: NextPage = () => {
