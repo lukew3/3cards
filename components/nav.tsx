@@ -3,30 +3,47 @@ import styles from '../styles/Nav.module.css'
 import { useEffect, useState } from 'react';
 
 const Nav = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const renderMySets = () => {
+    if (loggedIn) return <Link href='/mysets'><p>My Sets</p></Link>;
+  }
+
   return (
     <nav className={styles.nav_cont}>
       <Link href='/'>
         <h1 className={styles.title_link}>3cards</h1>
       </Link>
-      <NavLogin />
+      <div className={styles.nav_right}>
+        {renderMySets()}
+        <Link href='/create'>
+          <p>Create Set</p>
+        </Link>
+        <NavLogin 
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
+        />
+      </div>
     </nav>
   )
 }
 
-const NavLogin = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+const NavLogin = (props: {
+  loggedIn: boolean,
+  setLoggedIn: (loggedIn: boolean) => void
+}) => {
 
   const connectWallet = async () => {
-    if (loggedIn) {
+    if (props.loggedIn) {
       window.arweaveWallet?.disconnect();
-      setLoggedIn(false);
+      props.setLoggedIn(false);
     } else {
       if (window.arweaveWallet == undefined) {
         alert('Arconnect not installed. Go to https://arconnnect.io to get started.');
       } else {
         await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION']);
         window.arweaveWallet.getActiveAddress().then(address => {
-          setLoggedIn(true);
+          props.setLoggedIn(true);
           console.log(address);
         }).catch(err => {
           console.log(err);
@@ -39,10 +56,10 @@ const NavLogin = () => {
     setTimeout(() => {
       window.arweaveWallet?.getActiveAddress().then(address => {
         if (address) {
-          setLoggedIn(true);
+          props.setLoggedIn(true);
         }
       }).catch(() => {
-        setLoggedIn(false);
+        props.setLoggedIn(false);
       })
     }, 0);
   })
@@ -52,7 +69,7 @@ const NavLogin = () => {
       className={styles.login_text}
       onClick={connectWallet}
     >
-      {loggedIn ? 'Logout' : 'Login with ArConnect'}
+      {props.loggedIn ? 'Logout' : 'Login'}
     </div>
   )
 }

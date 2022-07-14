@@ -104,7 +104,7 @@ const Set: NextPage = () => {
       </Head>
       <Nav />
       <main className={styles.main}>
-        <h3>View Set</h3>
+        <h3>My Sets</h3>
         <div className={styles.terms}>
           {
             sets.map((set, index) => {

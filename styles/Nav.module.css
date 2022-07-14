@@ -9,8 +9,19 @@
     cursor: pointer;
 }
 
+.nav_right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_right * {
+    padding: 10px;
+    cursor: pointer;
+}
+
 .login_text {
     display: flex;
     align-items: center;
-    cursor: pointer;
 }
