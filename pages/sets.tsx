@@ -15,7 +15,11 @@ interface SetData {
 }
 
 const Set: NextPage = () => {
-  const arweave = Arweave.init({});
+  const arweave = Arweave.init({
+    host: 'arweave.net',
+    port: 443,
+    protocol: 'https'
+  });
   const router = useRouter();
   const [setsRetrieved, setSetsRetrieved] = useState(false);
   const [sets, setSets] = useState<SetData[]>([])
@@ -54,7 +58,7 @@ const Set: NextPage = () => {
         }
       }
     }`
-    arweave.api.post('https://arweave.net/graphql', {query: query_string}).then((results) => {
+    arweave.api.post('/graphql', {query: query_string}).then((results) => {
       let newSets : SetData[] = [];
       results.data.data.transactions.edges.forEach((edge : any) => {
         newSets.push({

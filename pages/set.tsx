@@ -8,7 +8,11 @@ import Term from '../components/term';
 import styles from '../styles/Create.module.css'
 
 const Set: NextPage = () => {
-  const arweave = Arweave.init({});
+  const arweave = Arweave.init({
+    host: 'arweave.net',
+    port: 443,
+    protocol: 'https'
+  });
   const [title, setTitle] = useState('My Set');
   const [termsRetrieved, setTermsRetrieved] = useState(false);
   const [terms, setTerms] = useState([['', ''], ['', ''], ['', '']]);
