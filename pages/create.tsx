@@ -13,9 +13,10 @@ const Create: NextPage = () => {
   const [terms, setTerms] = useState([['', ''], ['', '']]);
   
   const publishSet = async () => {
-    console.log(JSON.stringify(terms));
+    let newTerms = terms.filter(item => item[0] !== '' && item[1] !== '');
+    console.log(JSON.stringify(newTerms));
     const tx = await arweave.createTransaction({
-      data: JSON.stringify(terms)
+      data: JSON.stringify(newTerms)
     });
     tx.addTag('App-Name', '3cards');
     tx.addTag('Title', title);
