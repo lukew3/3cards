@@ -50,7 +50,7 @@ const Set: NextPage = () => {
         }
       }
     }`
-    arweave.api.post('/graphql', {query: query_string}).then((results) => {
+    arweave.api.post('https://arweave.net/graphql', {query: query_string}).then((results) => {
       let newSets : SetData[] = [];
       results.data.data.transactions.edges.forEach((edge : any) => {
         newSets.push({
