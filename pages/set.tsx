@@ -4,7 +4,7 @@ import Arweave from 'arweave';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Term from '../components/term';
-import styles from '../styles/Create.module.css'
+import styles from '../styles/Set.module.css'
 
 const Set: NextPage = () => {
   const arweave = Arweave.init({
@@ -48,7 +48,9 @@ const Set: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h3>View Set</h3>
-        <h4>{ title }</h4>
+        <h4
+          className={styles.title}
+        >{ title }</h4>
         <div className={styles.terms}>
           {
             terms.map((_, index) => {

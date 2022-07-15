@@ -1,0 +1,23 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.title {
+    text-align: left;
+    width: 100%;
+    max-width: 1200px;
+    font-size: 16pt;
+    padding-left: 10px;
+}
+
+.terms {
+  width: 100%;
+  max-width: 1200px;
+}

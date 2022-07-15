@@ -6,23 +6,11 @@ const Term = (props: {
 }) => {
   return(
     <div className={styles.term}>
-      <div className={styles.term_header}>
-        <div>{props.id + 1}</div>
-      </div>
-      <div className={styles.term_input}>
-        <input 
-          type="text"
-          placeholder="Term"
-          value={props.termPair[0]}
-          disabled
-        />
-        <input 
-          type="text"
-          placeholder="Definition"
-          value={props.termPair[1]}
-          disabled
-        />
-      </div>
+      <p>{props.termPair[0]}</p>
+      <div className={styles.term_div}></div>
+      <p
+        className={styles.term_definition}
+      >{props.termPair[1]}</p>
     </div>
   )
 }
