@@ -17,7 +17,7 @@ const SetInfo = (props: {
   }
 
   const buildAddressLink = () : string => {
-    return `https://viewblock.io/arweave/address/${ props.set.owner_address }`
+    return `/sets?owner=${ props.set.owner_address }`;
   }
 
   const buildShortAddress = () : string => {
