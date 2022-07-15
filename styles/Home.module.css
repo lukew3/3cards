@@ -9,10 +9,40 @@
   align-items: center;
 }
 
-.create_button {
-  padding: 5px 8px;
-  background-color: lightgrey;
-  border-radius: 3px;
+.logo {
+  width: 100%;
+  max-width: 300px;
+  margin: 1em;
+  margin-top: 10%;
+}
+
+.main_desc {
+  font-weight: bold;
+  font-size: 40pt;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sub_desc {
+  font-weight: medium;
+  font-size: 18pt;
+  margin: 0 auto;
+  margin-top: 1em;
+  text-align: center;
+}
+
+.buttons_group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5rem;
+  margin-top: 2em;
+}
+
+.button {
+  padding: 0.8em 1.6em;
+  border-radius: 8px;
   border: black 1px solid;
   cursor: pointer;
+  text-align: center;
+  font-weight: bold;
 }

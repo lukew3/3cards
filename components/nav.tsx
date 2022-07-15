@@ -7,22 +7,22 @@ const Nav = () => {
 
   const renderMySetsLink = () => {
     if (address !== '') {
-      return <Link href={{pathname: '/sets', query: {owner: address}}}><p>My Sets</p></Link>;
+      return <Link href={{pathname: '/sets', query: {owner: address}}}><a>My Sets</a></Link>;
     }
   }
 
   return (
     <nav className={styles.nav_cont}>
       <Link href='/'>
-        <h1 className={styles.title_link}>3cards</h1>
+        <a><h1 className={styles.title_link}>3cards</h1></a>
       </Link>
       <div className={styles.nav_right}>
         <Link href='/sets'>
-          <p>Find Sets</p>
+          <a>Find Sets</a>
         </Link>
         {renderMySetsLink()}
         <Link href='/create'>
-          <p>Create Set</p>
+          <a>Create Set</a>
         </Link>
         <NavLogin 
           loggedIn={Boolean(address)}

@@ -38,7 +38,7 @@ const SetInfo = (props: {
         </p>
         <div className={styles.cont_right}>
           <Link href={buildAddressLink()}>
-            <p className={styles.short_address}>Created By: { buildShortAddress() }</p>
+            <a className={styles.short_address}><p>Created By: { buildShortAddress() }</p></a>
           </Link>
           <p>Created On: { buildDateString() }</p>
         </div>
