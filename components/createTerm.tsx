@@ -16,12 +16,15 @@ const CreateTerm = (props: {
         <div className={styles.term_ops}>
           <div
             onClick={() => props.incTermPos(props.id)}
+            title="Move term down"
           >↓</div>
           <div
             onClick={() => props.decTermPos(props.id)}
+            title="Move term up"
           >↑</div>
           <div
             onClick={() => props.deleteTerm(props.id)}
+            title="Delete term"
           >X</div>
         </div>
       </div>
