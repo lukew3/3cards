@@ -40,3 +40,7 @@ a {
   box-sizing: border-box;
   color: var(--text);
 }
+
+path {
+  fill: var(--text);
+}
