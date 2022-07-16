@@ -32,17 +32,19 @@ const SetInfo = (props: {
   
   return(
     <Link href={buildSetLink()}>
-      <div className={styles.cont}>
-        <p className={styles.title}>
-          { props.set.title }
-        </p>
-        <div className={styles.cont_right}>
-          <Link href={buildAddressLink()}>
-            <a className={styles.short_address}><p>Created By: { buildShortAddress() }</p></a>
-          </Link>
-          <p>Created On: { buildDateString() }</p>
+      <a>
+        <div className={styles.cont}>
+          <p className={styles.title}>
+            { props.set.title }
+          </p>
+          <div className={styles.cont_right}>
+            <Link href={buildAddressLink()}>
+              <a className={styles.short_address}><p>Created By: { buildShortAddress() }</p></a>
+            </Link>
+            <p>Created On: { buildDateString() }</p>
+          </div>
         </div>
-      </div>
+      </a>
     </Link>
   )
 }
