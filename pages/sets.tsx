@@ -20,7 +20,6 @@ const Set: NextPage = () => {
     protocol: 'https'
   });
   const router = useRouter();
-  const [setsRetrieved, setSetsRetrieved] = useState(false);
   const [sets, setSets] = useState<SetData[]>([])
 
   const fetchSets = async () => {
@@ -77,13 +76,10 @@ const Set: NextPage = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (!setsRetrieved) {
-        setSetsRetrieved(true);
-        console.log("Loading sets");
-        fetchSets();
-      }
-    }, 1);
-  })
+      console.log("Loading sets");
+      fetchSets();
+    }, 0);
+  }, [router.asPath])
 
   return (
     <div className={styles.container}>
