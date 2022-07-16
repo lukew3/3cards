@@ -3,8 +3,8 @@
   grid-template-columns: 1fr 3px 2fr;
   column-gap: 15px;
   width: 100%;
-  background-color: lightgrey;
-  border: 1px solid grey;
+  background-color: var(--box-bg);
+  border: 1px solid var(--box-border);
   padding: 1rem;
   border-radius: 0.5rem;
   margin: 10px 0;
@@ -15,6 +15,6 @@
 }
 
 .term_div {
-  background-color: grey;
+  background-color: var(--term-divider);
   border-radius: 3px;
 }

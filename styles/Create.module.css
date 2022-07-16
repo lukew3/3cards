@@ -15,7 +15,7 @@
   margin-bottom: 1rem;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--text);
   font-size: 14pt;
 }
 
@@ -27,21 +27,20 @@
 .addItem {
   width: 100%;
   height: 50px;
-  background-color: lightgrey;
+  background-color: var(--box-bg);
   text-align: center;
   border-radius: 5px;
   cursor: pointer;
   max-width: 1200px;
-  border: 1px solid grey;
+  border: 1px solid var(--box-border);
 }
 
 .publish_button {
-  background-color: lightgrey;
   margin-top: 10px;
   padding: 8px 12px;
   border-radius: 5px;
   float: right;
   cursor: pointer;
-  background-color: #5cb85c;
+  background-color: var(--publish-button-bg);
   width: fit-content
 }

@@ -42,7 +42,7 @@
   padding: 0.8em 0;
   min-width: 150px;
   border-radius: 8px;
-  border: black 1px solid;
+  border: var(--text) 1px solid;
   cursor: pointer;
   text-align: center;
   font-weight: bold;
