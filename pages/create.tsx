@@ -22,8 +22,12 @@ const Create: NextPage = () => {
     tx.addTag('Content-Type', 'application/json');
     tx.addTag('Version', '0.0.2');
     // Unix-Time tag?
-    await arweave.transactions.sign(tx);
-    await arweave.transactions.post(tx);
+    try {
+      let result = await window.arweaveWallet.dispatch(tx);
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
     console.log(tx.id);
     Router.push({
       pathname: '/set',

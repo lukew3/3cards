@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import styles from '../styles/Nav.module.css'
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+const NavLogin = dynamic(() => import('./navLogin'), {
+  ssr: false,
+})
 
 const Nav = () => {
   const [address, setAddress] = useState('');
@@ -24,57 +28,12 @@ const Nav = () => {
         <Link href='/create'>
           <a>Create Set</a>
         </Link>
-        <NavLogin 
+        <NavLogin
           loggedIn={Boolean(address)}
           setAddress={setAddress}
         />
       </div>
     </nav>
-  )
-}
-
-const NavLogin = (props: {
-  loggedIn: boolean,
-  setAddress: (address: string) => void
-}) => {
-
-  const connectWallet = async () => {
-    if (props.loggedIn) {
-      window.arweaveWallet?.disconnect();
-      props.setAddress('');
-    } else {
-      if (window.arweaveWallet == undefined) {
-        alert('Arconnect not installed. Go to https://arconnnect.io to get started.');
-      } else {
-        await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION']);
-        window.arweaveWallet.getActiveAddress().then((address) => {
-          props.setAddress(address);
-        }).catch(err => {
-          console.log(err);
-        })
-      }
-    }
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      window.arweaveWallet?.getActiveAddress().then(address => {
-        if (address) {
-          props.setAddress(address);
-        }
-      }).catch(() => {
-        props.setAddress('');
-      })
-    }, 0);
-  })
-
-  return(
-    <div
-      className={styles.login_text}
-      onClick={connectWallet}
-    >
-      {props.loggedIn ? 'Logout' : 'Login'}
-    </div>
   )
 }
 

@@ -62,7 +62,7 @@ const Set: NextPage = () => {
       results.data.data.transactions.edges.forEach((edge : any) => {
         newSets.push({
           tx_id: edge.node.id,
-          timestamp: edge.node.block.timestamp,
+          timestamp: edge.node.block?.timestamp || 0,
           owner_address: edge.node.owner.address,
           title: edge.node.tags.find((tag : { name : string, value : string}) => tag.name === 'Title')?.value || 'Unnamed Set',
         })
