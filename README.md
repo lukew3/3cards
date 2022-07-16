@@ -1,11 +1,16 @@
 <br>
 <p align="center">
   <a href="https://lukew3-3cards.netlify.app">
-    <img src="https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg" height="128">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/47042841/179339257-daf4f574-888a-4038-95be-f0494e01d1d4.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/47042841/179339255-78a5a604-2f05-4594-8c6b-9de486c618df.svg">
+      <img alt="Shows a black logo in light color mode and a white one in dark color mode." src="https://user-images.githubusercontent.com/47042841/179339255-78a5a604-2f05-4594-8c6b-9de486c618df.svgg" height="130">
+    </picture>
   </a>
 </p>
 
 # 3cards
+
 Flashcards on web3. Permanently stored flashcards owned by you and resistant to authoritative control. Powered by [arweave](https://www.arweave.org/). 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
