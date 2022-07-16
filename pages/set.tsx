@@ -6,34 +6,47 @@ import { useState } from 'react';
 import Term from '../components/term';
 import styles from '../styles/Set.module.css'
 
+interface Tag {
+  name: string,
+  value: string,
+}
+
 const Set: NextPage = () => {
   const arweave = Arweave.init({
     host: 'arweave.net',
     port: 443,
     protocol: 'https'
   });
-  const [title, setTitle] = useState('My Set');
+  const [title, setTitle] = useState('Unnamed Set');
   const [termsRetrieved, setTermsRetrieved] = useState(false);
   const [terms, setTerms] = useState([['', ''], ['', ''], ['', '']]);
   const router = useRouter();
   const tx_id : string = router.query.tx_id?.toString() || '';
 
-  setTimeout(() => {
+  setTimeout(async () => {
     if (!termsRetrieved) {
       console.log("Loading terms");
       if (tx_id == '') return;
-      arweave.transactions.get(tx_id).then((tx) => {
-        // TODO: Ensure data is valid list of pairs first
+      // Get terms
+      arweave.api.get(tx_id).then(results => {
+        setTerms(results.data);
         setTermsRetrieved(true);
-        setTerms(JSON.parse(tx.get('data', {decode: true, string: true})));
-        tx['tags'].forEach((tag : any) => {
-          console.log(tag);
-          let key = tag.get('name', {decode: true, string: true});
-          if (key == 'Title') {
-            setTitle(tag.get('value', {decode: true, string: true}));
-          }
-        })
-      }).catch(err => {
+      }).catch(() => {
+        console.log("Could not load terms");
+      })
+      const tags_query = `{
+        transactions(
+          first: 1
+          ids: ["${tx_id}"]
+        ) {
+          edges { node { tags { name value } } }
+        }
+      }`
+      arweave.api.post('/graphql', {query: tags_query}).then((results) => {
+        const tags = results.data.data.transactions.edges[0].node.tags;
+        const title = tags.find((tag : Tag) => tag.name == 'Title').value;
+        setTitle(title);
+      }).catch((err) => {
         console.log(err);
       })
     }

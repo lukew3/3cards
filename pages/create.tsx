@@ -25,13 +25,13 @@ const Create: NextPage = () => {
     try {
       let result = await window.arweaveWallet.dispatch(tx);
       console.log(result);
+      console.log(tx.id);
+      Router.push({
+        pathname: '/set',
+      });
     } catch (err) {
       console.log(err);
     }
-    console.log(tx.id);
-    Router.push({
-      pathname: '/set',
-    });
   }
 
   const addTerm = () => {

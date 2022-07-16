@@ -27,10 +27,8 @@ const NavLogin = (props: {
     // Connect with arweave.app
     if (props.loggedIn) {
         webWallet.disconnect();
-
     } else {
         webWallet.connect();
-        console.log('made it here');
     }
   }
 
