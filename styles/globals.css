@@ -6,6 +6,20 @@
   --publish-button-bg: #5cb85c;
   --op-button-bg: #C4C4C4;
   --term-divider: grey;
+  --placeholder: grey;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #202020;
+    --text: #E4E4E4;
+    --box-bg: #1A1A1A;
+    --box-border: #2F2F2F;
+    --publish-button-bg: #1d5b1d;
+    --op-button-bg: #2F2F2F;
+    --term-divider: #2F2F2F;
+    --placeholder: #A4A4A4;
+  }
 }
 
 html,
@@ -24,4 +38,5 @@ a {
 
 * {
   box-sizing: border-box;
+  color: var(--text);
 }

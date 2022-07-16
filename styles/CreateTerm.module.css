@@ -41,7 +41,11 @@
   padding: 0.5rem;
   border: none;
   border-bottom: 1px solid var(--text);
-  background-color: transparent;
+  background-color: transparent
+}
+
+.term_input input::placeholder {
+  color: var(--placeholder);
 }
 
 .term_input input[disabled] {

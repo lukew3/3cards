@@ -19,6 +19,10 @@
   font-size: 14pt;
 }
 
+.title_input::placeholder {
+  color: var(--placeholder);
+}
+
 .terms {
   width: 100%;
   max-width: 1200px;
