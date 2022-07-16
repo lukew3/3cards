@@ -24,13 +24,15 @@ const Create: NextPage = () => {
     // Unix-Time tag?
     try {
       let result = await window.arweaveWallet.dispatch(tx);
-      console.log(result);
-      console.log(tx.id);
       Router.push({
         pathname: '/set',
+        query: {
+          tx_id: result.id
+        }
       });
     } catch (err) {
       console.log(err);
+      alert("Could not publish set. Are you logged in?");
     }
   }
 
