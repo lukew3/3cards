@@ -9,8 +9,7 @@ const nextConfig = {
       "/sets": { page: "/sets" },
     };
   },
-  assetPrefix: process.env.NODE_ENV === "production" ? "/3cards" : "",
-  basePath: process.env.NODE_ENV === "production" ? "/3cards" : "",
+  assetPrefix: '.',
   images: { loader: 'custom' },
 }
 
