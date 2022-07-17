@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  assetPrefix: '/3cards/',
-  basePath: '/3cards',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/3cards' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/3cards' : '',
 }
 
 module.exports = nextConfig
