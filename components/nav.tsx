@@ -13,7 +13,7 @@ const Nav = () => {
 
   const renderMySetsLink = () => {
     if (address !== '') {
-      return <Link href={{pathname: `${rootPath()}/sets`, query: {owner: address}}}><a>My Sets</a></Link>;
+      return <Link href={{pathname: `${rootPath()}/sets.html`, query: {owner: address}}}><a>My Sets</a></Link>;
     }
   }
 
@@ -23,11 +23,11 @@ const Nav = () => {
         <a><h1 className={styles.title_link}>3cards</h1></a>
       </Link>
       <div className={styles.nav_right}>
-        <Link href={`${rootPath()}/sets`}>
+        <Link href={`${rootPath()}/sets.html`}>
           <a>Find Sets</a>
         </Link>
         {renderMySetsLink()}
-        <Link href={`${rootPath()}/create`}>
+        <Link href={`${rootPath()}/create.html`}>
           <a>Create Set</a>
         </Link>
         <NavLogin

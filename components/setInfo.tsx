@@ -14,11 +14,11 @@ const SetInfo = (props: {
   set: SetData
 }) => {
   const buildSetLink = () : string => {
-    return `${rootPath()}/set?tx_id=${ props.set.tx_id }`
+    return `${rootPath()}/set.html?tx_id=${ props.set.tx_id }`
   }
 
   const buildAddressLink = () : string => {
-    return `${rootPath()}/sets?owner=${ props.set.owner_address }`;
+    return `${rootPath()}/sets.html?owner=${ props.set.owner_address }`;
   }
 
   const buildShortAddress = () : string => {
