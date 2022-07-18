@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '../styles/SetInfo.module.css'
+import rootPath from '../utils/rootPath';
 
 interface SetData {
   tx_id: string,
@@ -13,11 +14,11 @@ const SetInfo = (props: {
   set: SetData
 }) => {
   const buildSetLink = () : string => {
-    return `/set?tx_id=${ props.set.tx_id }`
+    return `${rootPath()}/set?tx_id=${ props.set.tx_id }`
   }
 
   const buildAddressLink = () : string => {
-    return `/sets?owner=${ props.set.owner_address }`;
+    return `${rootPath()}/sets?owner=${ props.set.owner_address }`;
   }
 
   const buildShortAddress = () : string => {
@@ -48,5 +49,5 @@ const SetInfo = (props: {
     </Link>
   )
 }
-  
+
 export default SetInfo;
