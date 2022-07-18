@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Arweave from 'arweave';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Term from '../components/term';
 import styles from '../styles/Set.module.css'
@@ -20,8 +19,14 @@ const Set: NextPage = () => {
   const [title, setTitle] = useState('Unnamed Set');
   const [termsRetrieved, setTermsRetrieved] = useState(false);
   const [terms, setTerms] = useState([['', ''], ['', ''], ['', '']]);
-  const router = useRouter();
-  const tx_id : string = router.query.tx_id?.toString() || '';
+  let tx_id : string;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    tx_id = params.get('tx_id') || '';
+  } catch {
+    // catch when window undefined (e.g. in server-side rendering)
+    tx_id = '';
+  }
 
   setTimeout(async () => {
     if (!termsRetrieved) {
