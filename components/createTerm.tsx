@@ -29,18 +29,16 @@ const CreateTerm = (props: {
         </div>
       </div>
       <div className={styles.term_input}>
-        <input 
-          type="text" 
-          placeholder="Term" 
-          onChange={(e) => props.setTermValue(props.id, e.target.value)}
-          value={props.termPair[0]}
-        />
-        <input 
-          type="text"
-          placeholder="Definition"
-          onChange={(e) => props.setDefValue(props.id, e.target.value)}
-          value={props.termPair[1]}
-        />
+        <div
+          className={styles.text_area}
+          onInput={(e) => props.setTermValue(props.id, (e.target as HTMLElement).innerHTML)}
+          contentEditable={true}
+        ></div>
+        <div
+          className={styles.text_area}
+          onInput={(e) => props.setDefValue(props.id, (e.target as HTMLElement).innerHTML)}
+          contentEditable={true}
+        ></div>
       </div>
     </div>
   )
