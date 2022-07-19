@@ -36,9 +36,28 @@
   justify-content: space-between;
 }
 
-.term_input div {
+.term_input_half {
   width: calc(50% - 10px);
   padding: 0.5rem;
+  border: none;
+  background-color: transparent;
+  min-height: 1.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.term_input_half p {
+  margin: 0;
+  margin-top: 0.5rem;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.text_area {
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 0;
   border: none;
   border-bottom: 1px solid var(--text);
   background-color: transparent;
