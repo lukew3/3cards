@@ -1,0 +1,40 @@
+.cards {
+    height: 300px;
+    width: 500px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    background-color: var(--box-bg);
+    flex-grow: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.card p {
+    margin: 0;
+}
+
+.controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    height: 10%;
+    margin: 5px;
+}
+
+.controls p {
+    margin: 0;
+    line-height: calc(1rem + 20px);
+}
+
+.controls button {
+    background-color: var(--op-button-bg);
+    border: none;
+    border-radius: 3px;
+    padding: 10px;
+}
