@@ -80,17 +80,10 @@ const Set: NextPage = () => {
   }
 
   const buildNextUrl = () => {
-    const after = sets.length > 0 ? sets[sets.length - 1].tx_id : '';
-    const owner = router.query.owner;
-    if (owner && after) {
-      return `/sets?after=${after}?owner=${owner}`;
-    } else if (owner) {
-      return `/sets?owner=${owner}`;
-    } else if (after) {
-      return `/sets?after=${after}`;
-    } else {
-      return '/sets';
-    }
+    let params : any = {}
+    if (sets.length > 0) params.after = sets[sets.length - 1].tx_id;
+    if (router.query.owner) params.owner = router.query.owner;
+    return params.toString() ? `?${params.toString()}` : '';
   }
 
   useEffect(() => {
