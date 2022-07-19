@@ -2,9 +2,11 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Arweave from 'arweave';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import SetInfo from '../components/setInfo';
-import styles from '../styles/Create.module.css';
+import styles from '../styles/Sets.module.css';
+import rootPath from '../utils/rootPath';
 
 interface SetData {
   tx_id: string,
@@ -23,10 +25,13 @@ const Set: NextPage = () => {
   const [sets, setSets] = useState<SetData[]>([])
 
   const fetchSets = async () => {
+    const per_page = 10;
     let owners_string = router.query.owner ? `owners: ["${router.query.owner}"]` : '';
+    let after_string = router.query.after ? `after: "${router.query.after}"` : '';
     const query_string = `{
       transactions(
-        first: 10
+        first: ${per_page}
+        ${after_string}
         ${owners_string}
         tags: [
           {
@@ -74,6 +79,20 @@ const Set: NextPage = () => {
     })
   }
 
+  const buildNextUrl = () => {
+    const after = sets.length > 0 ? sets[sets.length - 1].tx_id : '';
+    const owner = router.query.owner;
+    if (owner && after) {
+      return `/sets?after=${after}?owner=${owner}`;
+    } else if (owner) {
+      return `/sets?owner=${owner}`;
+    } else if (after) {
+      return `/sets?after=${after}`;
+    } else {
+      return '/sets';
+    }
+  }
+
   useEffect(() => {
     setTimeout(() => {
       console.log("Loading sets");
@@ -102,6 +121,12 @@ const Set: NextPage = () => {
               );
             })
           }
+        </div>
+        <div className={styles.page_control}>
+          <p>&lt;</p>
+          <Link href={`${rootPath()}${buildNextUrl()}`}>
+            <p>&gt;</p>
+          </Link>
         </div>
       </main>
     </div>
