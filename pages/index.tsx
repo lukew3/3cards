@@ -27,10 +27,10 @@ const Home: NextPage = () => {
         <h3 className={styles.main_desc}>Flashcards Without the Middleman</h3>
         <p className={styles.sub_desc}>No ads, no paywalls, no takedowns</p>
         <div className={styles.buttons_group}>
-          <Link href={`${rootPath()}/sets`}>
+          <Link href={`${rootPath()}/sets.html`}>
             <a className={styles.button}>Browse Sets</a>
           </Link>
-          <Link href={`${rootPath()}/create`}>
+          <Link href={`${rootPath()}/create.html`}>
             <a className={styles.button}>Create a set</a>
           </Link>
         </div>

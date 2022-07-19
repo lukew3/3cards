@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Arweave from 'arweave';
 import { useState } from 'react';
 import Term from '../components/term';
+import Cards from '../components/cards';
 import styles from '../styles/Set.module.css'
 
 interface Tag {
@@ -66,6 +67,7 @@ const Set: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h3>View Set</h3>
+        <Cards terms={terms} />
         <h4
           className={styles.title}
         >{ title }</h4>
