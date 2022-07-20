@@ -12,6 +12,10 @@ const Create: NextPage = () => {
   const [terms, setTerms] = useState([['', ''], ['', '']]);
   
   const publishSet = async () => {
+    if (title === '') {
+      alert('Please give your set a title');
+      return;
+    }
     let newTerms = terms.filter(item => item[0] !== '' && item[1] !== '');
     console.log(JSON.stringify(newTerms));
     const tx = await arweave.createTransaction({
