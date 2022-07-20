@@ -86,7 +86,8 @@ const Set: NextPage = () => {
     let params : any = {}
     if (sets.length > 0) params.after = sets[sets.length - 1].tx_id;
     if (router.query.owner) params.owner = router.query.owner;
-    return params.toString() ? `?${params.toString()}` : '';
+    const query_params = new URLSearchParams(params);
+    return query_params.toString() ? `?${query_params.toString()}` : '';
   }
 
   useEffect(() => {
@@ -106,6 +107,7 @@ const Set: NextPage = () => {
       <main className={styles.main}>
         <h3>Find Sets</h3>
         { isLoading ? <div className="lds-dual-ring"></div> : <div></div> }
+        { !isLoading && sets.length === 0 ? <div>No sets found</div> : <div></div> }
         <div className={styles.terms}>
           {
             sets.map((set, index) => {
