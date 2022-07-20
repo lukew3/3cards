@@ -7,7 +7,7 @@
 
 # 3cards
 
-Flashcards on web3. Permanently stored flashcards owned by you and resistant to authoritative control. Powered by [arweave](https://www.arweave.org/). 
+Flashcards on web3. Permanently stored, owned by you and resistant to authoritative control. Powered by [arweave](https://www.arweave.org/). 
 
 Available at
 https://lukew3-3cards.netlify.app and
