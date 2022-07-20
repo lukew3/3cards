@@ -22,7 +22,8 @@ const Set: NextPage = () => {
     protocol: 'https'
   });
   const router = useRouter();
-  const [sets, setSets] = useState<SetData[]>([])
+  const [sets, setSets] = useState<SetData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchSets = async () => {
     const per_page = 10;
@@ -72,9 +73,11 @@ const Set: NextPage = () => {
         })
       })
       setSets(newSets);
+      setIsLoading(false);
       console.log(newSets);
     }).catch(err => {
       setSets([]);
+      setIsLoading(false);
       console.log(err);
     })
   }
@@ -102,6 +105,7 @@ const Set: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h3>Find Sets</h3>
+        { isLoading ? <div className="lds-dual-ring"></div> : <div></div> }
         <div className={styles.terms}>
           {
             sets.map((set, index) => {
