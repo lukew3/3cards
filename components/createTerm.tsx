@@ -30,22 +30,28 @@ const CreateTerm = (props: {
       </div>
       <div className={styles.term_input}>
         <div className={styles.term_input_half}>
-          <input
-            type="text"
+          <textarea
             placeholder="Term"
             className={styles.text_area}
             value={props.termPair[0]}
-            onChange={(e) => props.setTermValue(props.id, e.target.value)}
+            onChange={(e) => {
+              props.setTermValue(props.id, e.target.value);
+              e.target.style.height = "1px";
+              e.target.style.height = (e.target.scrollHeight) + "px";
+            }}
           />
           <p>Term</p>
         </div>
         <div className={styles.term_input_half}>
-        <input
-            type="text"
+        <textarea
             placeholder="Definition"
             className={styles.text_area}
             value={props.termPair[1]}
-            onChange={(e) => props.setDefValue(props.id, e.target.value)}
+            onChange={(e) => {
+              props.setDefValue(props.id, e.target.value);
+              e.target.style.height = "1px";
+              e.target.style.height = (e.target.scrollHeight) + "px";
+            }}
           />
           <p>Definition</p>
         </div>
