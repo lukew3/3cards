@@ -6,7 +6,7 @@ import styles from '../styles/App.module.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return(
-    <div>
+    <div className={styles.wholePage}>
       <Nav />
       <div className={styles.content}>
         <Component {...pageProps} />
