@@ -1,4 +1,4 @@
-import styles from '../styles/CreateTerm.module.css'
+import styles from '../styles/CreateTerm.module.css';
 
 const CreateTerm = (props: { 
   id: number, 
@@ -30,19 +30,23 @@ const CreateTerm = (props: {
       </div>
       <div className={styles.term_input}>
         <div className={styles.term_input_half}>
-          <div
+          <input
+            type="text"
+            placeholder="Term"
             className={styles.text_area}
-            onInput={(e) => props.setTermValue(props.id, (e.target as HTMLElement).innerHTML)}
-            contentEditable={true}
-          ></div>
+            value={props.termPair[0]}
+            onChange={(e) => props.setTermValue(props.id, e.target.value)}
+          />
           <p>Term</p>
         </div>
         <div className={styles.term_input_half}>
-          <div
+        <input
+            type="text"
+            placeholder="Definition"
             className={styles.text_area}
-            onInput={(e) => props.setDefValue(props.id, (e.target as HTMLElement).innerHTML)}
-            contentEditable={true}
-          ></div>
+            value={props.termPair[1]}
+            onChange={(e) => props.setDefValue(props.id, e.target.value)}
+          />
           <p>Definition</p>
         </div>
       </div>
