@@ -61,22 +61,16 @@ const Create: NextPage = () => {
 
   const swapTerms = (index1 : number, index2 : number) => {
     let newTerms = [...terms];
-    let temp = newTerms[index1];
-    newTerms[index1] = newTerms[index2];
-    newTerms[index2] = temp;
+    [newTerms[index1], newTerms[index2]] = [newTerms[index2], newTerms[index1]];
     setTerms(newTerms);
   }
 
   const incTermPos = (index : number) => {
-    if (index < terms.length - 1) {
-      swapTerms(index, index + 1);
-    }
+    if (index < terms.length - 1) swapTerms(index, index + 1);
   }
 
   const decTermPos = (index : number) => {
-    if (index > 0) {
-      swapTerms(index, index - 1);
-    }
+    if (index > 0) swapTerms(index, index - 1);
   }
 
   return (
