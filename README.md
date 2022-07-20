@@ -11,7 +11,7 @@ Flashcards on web3. Permanently stored, owned by you and resistant to authoritat
 
 Available at
 https://lukew3-3cards.netlify.app and
-https://arweave.net/5HIJ1dRHhPaJ9_iCyWJ7VHLRYkmSflrozBIHqXLLUWY
+https://arweave.net/S3V-IVqbDWxqM09BarzgVsHPvfHyYhoLFsnXm2AK85c
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
