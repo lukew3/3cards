@@ -1,0 +1,17 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.page_control {
+  width: 4rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}

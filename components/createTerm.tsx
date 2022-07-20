@@ -1,4 +1,4 @@
-import styles from '../styles/CreateTerm.module.css'
+import styles from '../styles/CreateTerm.module.css';
 
 const CreateTerm = (props: { 
   id: number, 
@@ -29,18 +29,32 @@ const CreateTerm = (props: {
         </div>
       </div>
       <div className={styles.term_input}>
-        <input 
-          type="text" 
-          placeholder="Term" 
-          onChange={(e) => props.setTermValue(props.id, e.target.value)}
-          value={props.termPair[0]}
-        />
-        <input 
-          type="text"
-          placeholder="Definition"
-          onChange={(e) => props.setDefValue(props.id, e.target.value)}
-          value={props.termPair[1]}
-        />
+        <div className={styles.term_input_half}>
+          <textarea
+            placeholder="Term"
+            className={styles.text_area}
+            value={props.termPair[0]}
+            onChange={(e) => {
+              props.setTermValue(props.id, e.target.value);
+              e.target.style.height = "1px";
+              e.target.style.height = (e.target.scrollHeight) + "px";
+            }}
+          />
+          <p>Term</p>
+        </div>
+        <div className={styles.term_input_half}>
+        <textarea
+            placeholder="Definition"
+            className={styles.text_area}
+            value={props.termPair[1]}
+            onChange={(e) => {
+              props.setDefValue(props.id, e.target.value);
+              e.target.style.height = "1px";
+              e.target.style.height = (e.target.scrollHeight) + "px";
+            }}
+          />
+          <p>Definition</p>
+        </div>
       </div>
     </div>
   )
