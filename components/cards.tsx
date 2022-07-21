@@ -14,7 +14,7 @@ const Cards = (props: {
         className={styles.card}
         onClick={() => setShowingTerm(!showingTerm)}
       >
-        <p>{showingTerm ? props.terms[termId][0] : props.terms[termId][1]}</p>
+        {showingTerm ? props.terms[termId][0] : props.terms[termId][1]}
       </div>
       <div className={styles.controls}>
         <button onClick={() => {if (termId - 1 >= 0) setTermId(termId - 1)}}>&lt;</button>

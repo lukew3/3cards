@@ -19,7 +19,8 @@ const Set: NextPage = () => {
   });
   const [title, setTitle] = useState('Unnamed Set');
   const [termsRetrieved, setTermsRetrieved] = useState(false);
-  const [terms, setTerms] = useState([['', ''], ['', ''], ['', '']]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [terms, setTerms] = useState([]);
   let tx_id : string;
   try {
     const params = new URLSearchParams(window.location.search);
@@ -52,8 +53,10 @@ const Set: NextPage = () => {
         const tags = results.data.data.transactions.edges[0].node.tags;
         const title = tags.find((tag : Tag) => tag.name == 'Title').value;
         setTitle(title);
+        setIsLoading(false);
       }).catch((err) => {
         console.log(err);
+        setIsLoading(false);
       })
     }
   }, 0)
@@ -67,26 +70,37 @@ const Set: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h3>View Set</h3>
-        <Cards terms={terms} />
-        <h4
-          className={styles.title}
-        >{ title }</h4>
-        <div className={styles.terms}>
-          {
-            terms.map((_, index) => {
-              return(
-                <Term
-                  key={index}
-                  id={index}
-                  termPair={terms[index]}
-                />
-              );
-            })
-          }
-        </div>
+        { isLoading ? 
+            <div className="lds-dual-ring"></div> : 
+            terms.length === 0 ? <p>Set not found</p> : <SetContent terms={terms} title={title} /> }
       </main>
     </div>
   )
+}
+
+const SetContent = (props: {
+  terms : string[][],
+  title : string
+}) => {
+  return <div className={styles.set_content}>
+    <Cards terms={props.terms} />
+    <h4
+      className={styles.title}
+    >{ props.title }</h4>
+    <div className={styles.terms}>
+      {
+        props.terms.map((_, index) => {
+          return(
+            <Term
+              key={index}
+              id={index}
+              termPair={props.terms[index]}
+            />
+          );
+        })
+      }
+    </div>
+  </div>
 }
 
 export default Set

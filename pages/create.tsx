@@ -12,6 +12,10 @@ const Create: NextPage = () => {
   const [terms, setTerms] = useState([['', ''], ['', '']]);
   
   const publishSet = async () => {
+    if (title === '') {
+      alert('Please give your set a title');
+      return;
+    }
     let newTerms = terms.filter(item => item[0] !== '' && item[1] !== '');
     console.log(JSON.stringify(newTerms));
     const tx = await arweave.createTransaction({
@@ -82,13 +86,16 @@ const Create: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h3>Create Set</h3>
-        <input
-          className={styles.title_input}
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <div className={styles.title_group}>
+          <input
+            className={styles.title_input}
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <p>Title</p>
+        </div>
         <div className={styles.terms}>
           {
             terms.map((_, index) => {

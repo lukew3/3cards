@@ -1,10 +1,10 @@
 .footer {
-    padding: 0 2rem;
-    padding-bottom: 1.5rem;
+    margin: 1.5rem 2rem;
     display: flex;
 }
 
 .icon {
     height: 25px;
     width: 25px;
+    margin-right: 20px;
 }

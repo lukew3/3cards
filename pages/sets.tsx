@@ -65,12 +65,17 @@ const Set: NextPage = () => {
     arweave.api.post('/graphql', {query: query_string}).then((results) => {
       let newSets : SetData[] = [];
       results.data.data.transactions.edges.forEach((edge : any) => {
+        let title = edge.node.tags.find((tag : { name : string, value : string}) => tag.name === 'Title')?.value || 'Unnamed Set';
+        if (title.length > 50) {
+          title = title.slice(0, 47);
+          title += '...';
+        }
         newSets.push({
           tx_id: edge.node.id,
-          timestamp: edge.node.block?.timestamp || 0,
+          timestamp: edge.node.block?.timestamp || Date.now() / 1000,
           owner_address: edge.node.owner.address,
-          title: edge.node.tags.find((tag : { name : string, value : string}) => tag.name === 'Title')?.value || 'Unnamed Set',
-        })
+          title,
+        });
       })
       setSets(newSets);
       setIsLoading(false);
@@ -106,8 +111,9 @@ const Set: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h3>Find Sets</h3>
-        { isLoading ? <div className="lds-dual-ring"></div> : <div></div> }
-        { !isLoading && sets.length === 0 ? <div>No sets found</div> : <div></div> }
+        { isLoading ?
+            <div className="lds-dual-ring"></div> :
+            sets.length === 0 ? <div>No sets found</div> : <div></div> }
         <div className={styles.terms}>
           {
             sets.map((set, index) => {
