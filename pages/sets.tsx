@@ -27,8 +27,9 @@ const Set: NextPage = () => {
 
   const fetchSets = async () => {
     const per_page = 10;
-    let owners_string = router.query.owner ? `owners: ["${router.query.owner}"]` : '';
-    let after_string = router.query.after ? `after: "${router.query.after}"` : '';
+    const params = new URLSearchParams(window.location.search);
+    let owners_string = params.get('owner') ? `owners: ["${params.get('owner')}"]` : '';
+    let after_string = params.get('after') ? `after: "${params.get('after')}"` : '';
     const query_string = `{
       transactions(
         first: ${per_page}
@@ -90,7 +91,9 @@ const Set: NextPage = () => {
   const buildNextUrl = () => {
     let params : any = {}
     if (sets.length > 0) params.after = sets[sets.length - 1].tx_id;
-    if (router.query.owner) params.owner = router.query.owner;
+    let currentParams = new URLSearchParams();
+    try {currentParams = new URLSearchParams(window.location.search);} catch {}
+    if (currentParams.get('owner')) params.owner = currentParams.get('owner');
     const query_params = new URLSearchParams(params);
     return query_params.toString() ? `?${query_params.toString()}` : '';
   }
