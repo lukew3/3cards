@@ -7,7 +7,8 @@
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "arkb deploy ./out --use-bundler https://node2.bundlr.network"
   },
   "dependencies": {
     "arweave": "^1.11.4",
