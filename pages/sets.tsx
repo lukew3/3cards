@@ -106,8 +106,9 @@ const Set: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h3>Find Sets</h3>
-        { isLoading ? <div className="lds-dual-ring"></div> : <div></div> }
-        { !isLoading && sets.length === 0 ? <div>No sets found</div> : <div></div> }
+        { isLoading ?
+            <div className="lds-dual-ring"></div> :
+            sets.length === 0 ? <div>No sets found</div> : <div></div> }
         <div className={styles.terms}>
           {
             sets.map((set, index) => {
