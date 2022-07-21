@@ -14,10 +14,10 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-}
-
-.card p {
-    margin: 0;
+    word-break: break-word;
+    padding: 1rem;
+    user-select: none;
+    font-size: 14pt;
 }
 
 .controls {
