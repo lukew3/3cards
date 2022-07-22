@@ -38,8 +38,10 @@ const Set: NextPage = () => {
       arweave.api.get(tx_id).then(results => {
         setTerms(results.data);
         setTermsRetrieved(true);
+        setIsLoading(false);
       }).catch(() => {
         console.log("Could not load terms");
+        setIsLoading(false);
       })
       const tags_query = `{
         transactions(
@@ -53,10 +55,8 @@ const Set: NextPage = () => {
         const tags = results.data.data.transactions.edges[0].node.tags;
         const title = tags.find((tag : Tag) => tag.name == 'Title').value;
         setTitle(title);
-        setIsLoading(false);
       }).catch((err) => {
         console.log(err);
-        setIsLoading(false);
       })
     }
   }, 0)
