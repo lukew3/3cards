@@ -1,6 +1,7 @@
 .cards {
     height: 300px;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -39,4 +40,5 @@
     border-radius: 3px;
     padding: 10px;
     cursor: pointer;
+    line-height: 0.5rem;
 }
