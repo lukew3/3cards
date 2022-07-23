@@ -13,6 +13,7 @@ interface SetData {
   owner_address: string,
   timestamp: number,
   title: string,
+  card_count: string,
 }
 
 const Set: NextPage = () => {
@@ -67,17 +68,14 @@ const Set: NextPage = () => {
       let newSets : SetData[] = [];
       results.data.data.transactions.edges.forEach((edge : any) => {
         let title = edge.node.tags.find((tag : { name : string, value : string}) => tag.name === 'Title')?.value || 'Unnamed Set';
-        if (title.length > 50) {
-          title = title.slice(0, 47);
-          title += '...';
-        }
         newSets.push({
           tx_id: edge.node.id,
           timestamp: edge.node.block?.timestamp || Date.now() / 1000,
           owner_address: edge.node.owner.address,
-          title,
+          title: title.length > 50 ? title.slice(0, 47) + '...' : title,
+          card_count: edge.node.tags.find((tag : { name : string, value : string}) => tag.name === 'Card-Count')?.value || '?',
         });
-      })
+      });
       setSets(newSets);
       setIsLoading(false);
       console.log(newSets);

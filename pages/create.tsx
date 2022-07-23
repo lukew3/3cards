@@ -25,8 +25,9 @@ const Create: NextPage = () => {
     });
     tx.addTag('App-Name', '3cards');
     tx.addTag('Title', title);
+    tx.addTag('Card-Count', newTerms.length.toString());
     tx.addTag('Content-Type', 'application/json');
-    tx.addTag('Version', '0.0.2');
+    tx.addTag('Version', '0.0.3');
     // Unix-Time tag?
     try {
       let result = await window.arweaveWallet.dispatch(tx);

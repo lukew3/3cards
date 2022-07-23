@@ -7,6 +7,7 @@ interface SetData {
   owner_address: string,
   timestamp: number,
   title: string,
+  card_count: string,
 }
 
 const SetInfo = (props: {
@@ -39,6 +40,7 @@ const SetInfo = (props: {
             { props.set.title }
           </p>
           <div className={styles.cont_right}>
+            <p>{props.set.card_count} cards</p>
             <Link href={buildAddressLink()}>
               <a className={styles.short_address}><p>Created By: { buildShortAddress() }</p></a>
             </Link>
