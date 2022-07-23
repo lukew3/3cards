@@ -4,13 +4,15 @@ import Router from 'next/router';
 import Arweave from 'arweave';
 import React, { useState } from 'react';
 import CreateTerm from '../components/createTerm';
+import ImportFloater from '../components/importFloater';
 import styles from '../styles/Create.module.css'
 
 const Create: NextPage = () => {
   const arweave = Arweave.init({});
   const [title, setTitle] = useState('');
   const [terms, setTerms] = useState([['', ''], ['', '']]);
-  
+  const [showingImport, setShowingImport] = useState(false);
+
   const publishSet = async () => {
     if (title === '') {
       alert('Please give your set a title');
@@ -86,6 +88,14 @@ const Create: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h3>Create Set</h3>
+        <div
+          className={styles.import_button}
+          onClick={() => setShowingImport(true)}
+        >Import</div>
+        { showingImport ?
+            <ImportFloater
+              closeImport={() => setShowingImport(false)}
+            /> : null }
         <div className={styles.title_group}>
           <input
             className={styles.title_input}

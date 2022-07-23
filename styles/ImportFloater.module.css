@@ -1,0 +1,72 @@
+.background {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floater {
+    width: 500px;
+    height: 500px;
+    background-color: var(--box-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.close_button {
+    align-self: flex-end;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: var(--op-button-bg);
+    border-radius: 3px;
+    margin: -1rem;
+    margin-bottom: -2rem;
+}
+
+.text_area {
+    background-color: var(--box-bg);
+    flex-grow: 2;
+}
+
+.seperators_group {
+    display: flex;
+}
+
+.seperators_item {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    width: 50%;
+}
+
+.seperators_item label {
+    font-size: 11pt;
+}
+
+.seperator_input {
+    width: 5rem;
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 12pt;
+    border-bottom: 1px solid white;
+}
+
+.import_button {
+    width: auto;
+    align-self: flex-end;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 3px;
+    background-color: var(--op-button-bg);
+}

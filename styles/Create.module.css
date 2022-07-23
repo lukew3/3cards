@@ -33,6 +33,15 @@
   color: var(--placeholder);
 }
 
+.import_button {
+  background-color: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: 3px;
+  padding: 0.5rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
 .terms {
   width: 100%;
   max-width: 1200px;
