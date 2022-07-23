@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styles from '../styles/CreateTerm.module.css';
 
 const CreateTerm = (props: { 
@@ -9,6 +10,31 @@ const CreateTerm = (props: {
   incTermPos : (id: number) => void,
   decTermPos : (id: number) => void,
 }) => {
+  const updateInputSizing = () => {
+    const term_input = document.getElementById(`create-term-${props.id}`);
+    if (term_input) {
+      term_input.style.height = "1px";
+      term_input.style.height = term_input.scrollHeight + "px";
+    }
+    const def_input = document.getElementById(`create-def-${props.id}`);
+    if (def_input) {
+      def_input.style.height = "1px";
+      def_input.style.height = def_input.scrollHeight + "px";
+    }
+  }
+
+  // update input sizing on termPair change
+  useEffect(updateInputSizing, [props.termPair]);
+
+  // update input sizing on window resize
+  useEffect(() => {
+    window.addEventListener('resize', updateInputSizing);
+    // cleanup this component
+    return () => {
+      window.removeEventListener('resize', updateInputSizing);
+    };
+  }, []);
+  
   return(
     <div className={styles.term}>
       <div className={styles.term_header}>
@@ -31,27 +57,21 @@ const CreateTerm = (props: {
       <div className={styles.term_input}>
         <div className={styles.term_input_half}>
           <textarea
+            id={`create-term-${props.id}`}
             placeholder="Term"
             className={styles.text_area}
             value={props.termPair[0]}
-            onChange={(e) => {
-              props.setTermValue(props.id, e.target.value);
-              e.target.style.height = "1px";
-              e.target.style.height = (e.target.scrollHeight) + "px";
-            }}
+            onChange={e => {props.setTermValue(props.id, e.target.value); updateInputSizing()}}
           />
           <p>Term</p>
         </div>
         <div className={styles.term_input_half}>
         <textarea
+            id={`create-def-${props.id}`}
             placeholder="Definition"
             className={styles.text_area}
             value={props.termPair[1]}
-            onChange={(e) => {
-              props.setDefValue(props.id, e.target.value);
-              e.target.style.height = "1px";
-              e.target.style.height = (e.target.scrollHeight) + "px";
-            }}
+            onChange={e => {props.setDefValue(props.id, e.target.value); updateInputSizing()}}
           />
           <p>Definition</p>
         </div>
