@@ -66,8 +66,8 @@
   border-bottom: 1px solid var(--text);
   background-color: transparent;
   min-height: 1.5rem;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
+  resize: none;
 }
 
 .term_input input::placeholder {
