@@ -95,6 +95,7 @@ const Create: NextPage = () => {
         { showingImport ?
             <ImportFloater
               closeImport={() => setShowingImport(false)}
+              setTerms={setTerms}
             /> : null }
         <div className={styles.title_group}>
           <input
