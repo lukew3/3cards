@@ -37,7 +37,7 @@ const ImportFloater = (props: {
                 <h3>Import</h3>
                 <textarea
                     className={styles.text_area}
-                    placeholder="Input"
+                    placeholder="Paste input here..."
                     onChange={e => setImportContent(e.target.value)}
                 >
                 </textarea>
