@@ -84,8 +84,6 @@ const Create: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>Create Set - 3cards</title>
-        <meta name="description" content="Create a flash card set with 3cards" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
         <h3>Create Set</h3>

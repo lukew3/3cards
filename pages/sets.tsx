@@ -107,8 +107,6 @@ const Set: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>Find Sets - 3cards</title>
-        <meta name="description" content="Create a flash card set with 3cards" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
         <h3>Find Sets</h3>

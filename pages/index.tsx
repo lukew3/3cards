@@ -9,8 +9,6 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>3cards</title>
-        <meta name="description" content="Flashcards without the middleman. No ads, no paywalls, no takedowns." />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
         <svg className={styles.logo} viewBox="0 0 74 54" xmlns="http://www.w3.org/2000/svg">
