@@ -61,12 +61,19 @@
     border-bottom: 1px solid white;
 }
 
+.bottom_group {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    justify-content: flex-end;
+}
+
 .import_button {
     width: auto;
     align-self: flex-end;
     cursor: pointer;
     padding: 0.5rem;
-    margin-top: 0.5rem;
     border-radius: 3px;
+    margin-left: 0.5rem;
     background-color: var(--op-button-bg);
 }

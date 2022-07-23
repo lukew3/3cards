@@ -1,22 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/ImportFloater.module.css'
 
 const ImportFloater = (props: {
     closeImport: () => void,
     setTerms: (terms : string[][]) => void,
 }) => {
+    const [cardCount, setCardCount] = useState(0);
+    const [newTerms, setNewTerms] = useState([['', '']]);
     const [importContent, setImportContent] = useState('');
     const [termSeperator, setTermSeperator] = useState('\t');
     const [cardSeperator, setCardSeperator] = useState('\n');
 
-    const importSet = () => {
-        let terms : string[] = importContent.split(cardSeperator);
-        let newTerms : string[][] = [];
+    useEffect(() => {
+        // Update newTerms and cardCount when variables change
+        let terms : string[] = importContent.split(cardSeperator || '\n');
+        let terms2 : string[][] = [];
         terms.forEach(term => {
-            newTerms.push(term.split(termSeperator));
+            terms2.push(term.split(termSeperator || '\t'));
         })
-        // console.log(importContent);
-        // console.log(newTerms);
+        setNewTerms(terms2);
+        setCardCount(terms2.length);
+    }, [importContent, termSeperator, cardSeperator])
+
+    const importSet = () => {
         props.setTerms(newTerms);
         props.closeImport();
     }
@@ -32,7 +38,7 @@ const ImportFloater = (props: {
                 <textarea
                     className={styles.text_area}
                     placeholder="Input"
-                    onChange={(e) => setImportContent(e.target.value)}
+                    onChange={e => setImportContent(e.target.value)}
                 >
                 </textarea>
                 <div
@@ -59,10 +65,13 @@ const ImportFloater = (props: {
                         />
                     </div>
                 </div>
-                <div
-                    className={styles.import_button}
-                    onClick={importSet}
-                >Import</div>
+                <div className={styles.bottom_group}>
+                    <label>{cardCount} cards</label>
+                    <div
+                        className={styles.import_button}
+                        onClick={importSet}
+                    >Import</div>
+                </div>
             </div>
         </div>
     )
