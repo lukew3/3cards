@@ -40,17 +40,17 @@ const Cards = (props: {
       <input type="checkbox" className={styles.show_term_checkbox} checked={!showingTerm} onChange={toggleShowingTerm} />
       <div className={styles.cards_list}>
         {
-          props.terms.map((_, index) => {
+          props.terms.map((termPair) => {
             return(
               <div
                 className={styles.card}
                 onClick={toggleShowingTerm}
               >
                 <div className={styles.card_front}>
-                  {props.terms[index][0]}
+                  {termPair[0]}
                 </div>
                 <div className={styles.card_back}>
-                  {props.terms[index][1]}
+                  {termPair[1]}
                 </div>
               </div>
             );

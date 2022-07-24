@@ -40,7 +40,7 @@
     display: none;
 }
 
-.show_term_checkbox:checked + .card {
+.show_term_checkbox:checked + .cards_list .card {
     transform: rotateX(180deg);
 }
 
