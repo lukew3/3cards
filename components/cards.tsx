@@ -8,13 +8,27 @@ const Cards = (props: {
   const [termId, setTermId] = useState(0);
   const [showingTerm, setShowingTerm] = useState(true);
 
+  const scrollToTerm = (termIndex : number) => {
+    const cards_list_item = document.getElementById('Cards_cards_list');
+    if (cards_list_item) {
+      const scrollDist = cards_list_item.scrollWidth / termsLen;
+      cards_list_item.scrollTo(termIndex * scrollDist, 0);
+    }
+  }
+
   const showPrev = () => {
-    if (termId - 1 >= 0) setTermId(termId - 1);
+    if (termId - 1 >= 0) {
+      scrollToTerm(termId-1);
+      setTermId(termId - 1);
+    }
     setShowingTerm(true);
   }
 
   const showNext = () => {
-    if (termId + 1 < termsLen) setTermId(termId + 1);
+    if (termId + 1 < termsLen) {
+      scrollToTerm(termId+1);
+      setTermId(termId + 1);
+    }
     setShowingTerm(true);
   }
   
@@ -38,7 +52,7 @@ const Cards = (props: {
   return (
     <div className={styles.cards}>
       <input type="checkbox" className={styles.show_term_checkbox} checked={!showingTerm} onChange={toggleShowingTerm} />
-      <div className={styles.cards_list}>
+      <div id="Cards_cards_list" className={styles.cards_list}>
         {
           props.terms.map((termPair) => {
             return(
