@@ -1,20 +1,31 @@
 .cards {
     height: 300px;
-    width: 100%;
-    max-width: 500px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-self: center;
 }
 
+.cards_list {
+    flex-grow: 2;
+    scroll-snap-type: x mandatory;
+    width: 500px;
+    display: flex;
+    -webkit-overflow-scrolling: touch;
+	overflow-x: scroll;
+    overflow-y: hidden;
+}
+
 .card {
     background-color: var(--box-bg);
-    flex-grow: 2;
     font-size: 14pt;
     border-radius: 10px;
+    height: 100%;
+    width: 500px;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    scroll-snap-align: start;
+    position: relative;
 }
 
 .show_term_checkbox {

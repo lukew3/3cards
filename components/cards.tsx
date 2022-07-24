@@ -38,16 +38,24 @@ const Cards = (props: {
   return (
     <div className={styles.cards}>
       <input type="checkbox" className={styles.show_term_checkbox} checked={!showingTerm} onChange={toggleShowingTerm} />
-      <div
-        className={styles.card}
-        onClick={toggleShowingTerm}
-      >
-        <div className={styles.card_front}>
-          {props.terms[termId][0]}
-        </div>
-        <div className={styles.card_back}>
-          {props.terms[termId][1]}
-        </div>
+      <div className={styles.cards_list}>
+        {
+          props.terms.map((_, index) => {
+            return(
+              <div
+                className={styles.card}
+                onClick={toggleShowingTerm}
+              >
+                <div className={styles.card_front}>
+                  {props.terms[index][0]}
+                </div>
+                <div className={styles.card_back}>
+                  {props.terms[index][1]}
+                </div>
+              </div>
+            );
+          })
+        }
       </div>
       <div className={styles.controls}>
         <button onClick={showPrev}>&lt;</button>
