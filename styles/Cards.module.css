@@ -18,6 +18,7 @@
     scrollbar-width: none;
     scroll-snap-type: mandatory;
     scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
 }
 
 .cards_list::-webkit-scrollbar {
