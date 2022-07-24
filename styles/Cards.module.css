@@ -17,7 +17,11 @@
     transform-style: preserve-3d;
 }
 
-.cards:hover .card {
+.show_term_checkbox {
+    display: none;
+}
+
+.show_term_checkbox:checked + .card {
     transform: rotateX(180deg);
 }
 

@@ -37,6 +37,7 @@ const Cards = (props: {
 
   return (
     <div className={styles.cards}>
+      <input type="checkbox" className={styles.show_term_checkbox} checked={!showingTerm} onChange={toggleShowingTerm} />
       <div
         className={styles.card}
         onClick={toggleShowingTerm}
