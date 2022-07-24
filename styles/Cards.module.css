@@ -1,27 +1,45 @@
 .cards {
-    height: 300px;
     width: 100%;
     max-width: 500px;
+    height: 300px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-self: center;
 }
 
+.cards_list {
+    flex-grow: 2;
+    display: flex;
+    -webkit-overflow-scrolling: touch;
+	overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-snap-type: mandatory;
+    scroll-snap-type: x mandatory;
+}
+
+.cards_list::-webkit-scrollbar {
+    display: none;
+}
+
 .card {
     background-color: var(--box-bg);
-    flex-grow: 2;
     font-size: 14pt;
     border-radius: 10px;
+    min-width: 100%;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    scroll-snap-align: center;
+    position: relative;
 }
 
 .show_term_checkbox {
     display: none;
 }
 
-.show_term_checkbox:checked + .card {
+.show_term_checkbox:checked + .cards_list .card {
     transform: rotateX(180deg);
 }
 
