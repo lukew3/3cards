@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Arweave from 'arweave';
 import { useState } from 'react';
-import Term from '../components/term';
-import Cards from '../components/cards';
+import SetCard from '../components/setCard';
+import CardsApplet from '../components/cardsApplet';
 import styles from '../styles/Set.module.css'
 
 interface Tag {
@@ -18,9 +18,9 @@ const Set: NextPage = () => {
     protocol: 'https'
   });
   const [title, setTitle] = useState('Unnamed Set');
-  const [termsRetrieved, setTermsRetrieved] = useState(false);
+  const [cardsRetrieved, setCardsRetrieved] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [terms, setTerms] = useState([]);
+  const [cards, setCards] = useState([]);
   let tx_id : string;
   try {
     const params = new URLSearchParams(window.location.search);
@@ -31,16 +31,16 @@ const Set: NextPage = () => {
   }
 
   setTimeout(async () => {
-    if (!termsRetrieved) {
-      console.log("Loading terms");
+    if (!cardsRetrieved) {
+      console.log("Loading set");
       if (tx_id == '') return;
       // Get terms
       arweave.api.get(tx_id).then(results => {
-        setTerms(results.data);
-        setTermsRetrieved(true);
+        setCards(results.data);
+        setCardsRetrieved(true);
         setIsLoading(false);
       }).catch(() => {
-        console.log("Could not load terms");
+        console.log("Could not load set");
         setIsLoading(false);
       })
       const tags_query = `{
@@ -70,29 +70,29 @@ const Set: NextPage = () => {
         <h3>View Set</h3>
         { isLoading ? 
             <div className="lds-dual-ring"></div> : 
-            terms.length === 0 ? <p>Set not found</p> : <SetContent terms={terms} title={title} /> }
+            cards.length === 0 ? <p>Set not found</p> : <SetContent cards={cards} title={title} /> }
       </main>
     </div>
   )
 }
 
 const SetContent = (props: {
-  terms : string[][],
+  cards : string[][],
   title : string
 }) => {
   return <div className={styles.set_content}>
-    <Cards terms={props.terms} />
+    <CardsApplet cards={props.cards} />
     <h4
       className={styles.title}
     >{ props.title }</h4>
     <div className={styles.terms}>
       {
-        props.terms.map((_, index) => {
+        props.cards.map((card, index) => {
           return(
-            <Term
+            <SetCard
               key={index}
               id={index}
-              termPair={props.terms[index]}
+              card={card}
             />
           );
         })

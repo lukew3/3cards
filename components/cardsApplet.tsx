@@ -1,17 +1,17 @@
-import styles from '../styles/Cards.module.css'
+import styles from '../styles/CardsApplet.module.css'
 import { useEffect, useState } from 'react';
 
 const Cards = (props: {
-  terms: string[][],
+  cards: string[][],
 }) => {
-  const termsLen = props.terms.length;
+  const setLen = props.cards.length;
   const [termId, setTermId] = useState(0);
   const [showingTerm, setShowingTerm] = useState(true);
 
   const scrollToTerm = (termIndex : number) => {
     const cards_list_item = document.getElementById('Cards_cards_list');
     if (cards_list_item) {
-      const scrollDist = cards_list_item.scrollWidth / termsLen;
+      const scrollDist = cards_list_item.scrollWidth / setLen;
       cards_list_item.scrollTo(termIndex * scrollDist, 0);
     }
   }
@@ -25,7 +25,7 @@ const Cards = (props: {
   }
 
   const showNext = () => {
-    if (termId + 1 < termsLen) {
+    if (termId + 1 < setLen) {
       scrollToTerm(termId+1);
       setTermId(termId + 1);
     }
@@ -43,7 +43,7 @@ const Cards = (props: {
   }
 
   const handleCardsListScroll = (e : any) => {
-    const scrollDist = e.target.scrollWidth / termsLen;
+    const scrollDist = e.target.scrollWidth / setLen;
     const nextTermId = Math.ceil(e.target.scrollLeft / scrollDist);
     setTermId(nextTermId);
   }
@@ -72,7 +72,7 @@ const Cards = (props: {
       <input type="checkbox" className={styles.show_term_checkbox} checked={!showingTerm} onChange={toggleShowingTerm} />
       <div id="Cards_cards_list" className={styles.cards_list}>
         {
-          props.terms.map((termPair, index) => {
+          props.cards.map((card, index) => {
             return(
               <div
                 className={styles.card}
@@ -80,10 +80,10 @@ const Cards = (props: {
                 onClick={toggleShowingTerm}
               >
                 <div className={styles.card_front}>
-                  {termPair[0]}
+                  {card[0]}
                 </div>
                 <div className={styles.card_back}>
-                  {termPair[1]}
+                  {card[1]}
                 </div>
               </div>
             );
@@ -92,7 +92,7 @@ const Cards = (props: {
       </div>
       <div className={styles.controls}>
         <button onClick={showPrev}>&lt;</button>
-        <p>{termId + 1}/{termsLen}</p>
+        <p>{termId + 1}/{setLen}</p>
         <button onClick={showNext}>&gt;</button>
       </div>
     </div>

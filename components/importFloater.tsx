@@ -3,27 +3,27 @@ import styles from '../styles/ImportFloater.module.css'
 
 const ImportFloater = (props: {
     closeImport: () => void,
-    setTerms: (terms : string[][]) => void,
+    setCards: (cards : string[][]) => void,
 }) => {
     const [cardCount, setCardCount] = useState(0);
-    const [newTerms, setNewTerms] = useState([['', '']]);
+    const [newCards, setNewCards] = useState([['', '']]);
     const [importContent, setImportContent] = useState('');
     const [termSeperator, setTermSeperator] = useState('\t');
     const [cardSeperator, setCardSeperator] = useState('\n');
 
     useEffect(() => {
         // Update newTerms and cardCount when variables change
-        let terms : string[] = importContent.split(cardSeperator || '\n');
-        let terms2 : string[][] = [];
-        terms.forEach(term => {
-            terms2.push(term.split(termSeperator || '\t'));
+        let cards : string[] = importContent.split(cardSeperator || '\n');
+        let cards2 : string[][] = [];
+        cards.forEach(card => {
+            cards2.push(card.split(termSeperator || '\t'));
         })
-        setNewTerms(terms2);
-        setCardCount(terms2.length);
+        setNewCards(cards2);
+        setCardCount(cards2.length);
     }, [importContent, termSeperator, cardSeperator])
 
     const importSet = () => {
-        props.setTerms(newTerms);
+        props.setCards(newCards);
         props.closeImport();
     }
 

@@ -3,14 +3,14 @@ import Head from 'next/head';
 import Router from 'next/router';
 import Arweave from 'arweave';
 import React, { useState } from 'react';
-import CreateTerm from '../components/createTerm';
+import CreateCard from '../components/createCard';
 import ImportFloater from '../components/importFloater';
 import styles from '../styles/Create.module.css'
 
 const Create: NextPage = () => {
   const arweave = Arweave.init({});
   const [title, setTitle] = useState('');
-  const [terms, setTerms] = useState([['', ''], ['', '']]);
+  const [cards, setCards] = useState([['', ''], ['', '']]);
   const [showingImport, setShowingImport] = useState(false);
 
   const publishSet = async () => {
@@ -18,7 +18,7 @@ const Create: NextPage = () => {
       alert('Please give your set a title');
       return;
     }
-    let newTerms = terms.filter(item => item[0] !== '' && item[1] !== '');
+    let newTerms = cards.filter(card => card[0] !== '' && card[1] !== '');
     console.log(JSON.stringify(newTerms));
     const tx = await arweave.createTransaction({
       data: JSON.stringify(newTerms)
@@ -43,41 +43,41 @@ const Create: NextPage = () => {
     }
   }
 
-  const addTerm = () => {
-    setTerms(state => [...state, ['', '']]);
+  const addCard = () => {
+    setCards(state => [...state, ['', '']]);
   }
 
-  const deleteTerm = (index : number) => {
-    setTerms(state => [
+  const deleteCard = (index : number) => {
+    setCards(state => [
       ...state.slice(0, index),
       ...state.slice(index + 1)
     ]);
   }
 
   const setTermValue = (index : number, value : string) => {
-    let newTerms = [...terms];
-    newTerms[index][0] = value;
-    setTerms(newTerms)
+    let newCards = [...cards];
+    newCards[index][0] = value;
+    setCards(newCards)
   }
 
   const setDefValue = (index : number, value : string) => {
-    let newTerms = [...terms];
-    newTerms[index][1] = value;
-    setTerms(newTerms)
+    let newCards = [...cards];
+    newCards[index][1] = value;
+    setCards(newCards)
   }
 
-  const swapTerms = (index1 : number, index2 : number) => {
-    let newTerms = [...terms];
-    [newTerms[index1], newTerms[index2]] = [newTerms[index2], newTerms[index1]];
-    setTerms(newTerms);
+  const swapCards = (index1 : number, index2 : number) => {
+    let newCards = [...cards];
+    [newCards[index1], newCards[index2]] = [newCards[index2], newCards[index1]];
+    setCards(newCards);
   }
 
-  const incTermPos = (index : number) => {
-    if (index < terms.length - 1) swapTerms(index, index + 1);
+  const incCardPos = (index : number) => {
+    if (index < cards.length - 1) swapCards(index, index + 1);
   }
 
-  const decTermPos = (index : number) => {
-    if (index > 0) swapTerms(index, index - 1);
+  const decCardPos = (index : number) => {
+    if (index > 0) swapCards(index, index - 1);
   }
 
   return (
@@ -94,7 +94,7 @@ const Create: NextPage = () => {
         { showingImport ?
             <ImportFloater
               closeImport={() => setShowingImport(false)}
-              setTerms={setTerms}
+              setCards={setCards}
             /> : null }
         <div className={styles.title_group}>
           <input
@@ -108,17 +108,17 @@ const Create: NextPage = () => {
         </div>
         <div className={styles.terms}>
           {
-            terms.map((_, index) => {
+            cards.map((card, index) => {
               return(
-                <CreateTerm
+                <CreateCard
                   key={index}
                   id={index}
-                  termPair={terms[index]}
+                  card={card}
                   setTermValue={setTermValue}
                   setDefValue={setDefValue}
-                  deleteTerm={deleteTerm}
-                  incTermPos={incTermPos}
-                  decTermPos={decTermPos}
+                  deleteCard={deleteCard}
+                  incCardPos={incCardPos}
+                  decCardPos={decCardPos}
                 />
               );
             })
@@ -126,7 +126,7 @@ const Create: NextPage = () => {
           <div 
             className={styles.addItem} 
             tabIndex={0}
-            onClick={addTerm}
+            onClick={addCard}
           >
             <p>Add item +</p>
           </div>

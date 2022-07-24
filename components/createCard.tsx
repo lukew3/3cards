@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import styles from '../styles/CreateTerm.module.css';
+import styles from '../styles/CreateCard.module.css';
 
-const CreateTerm = (props: { 
+const CreateCard = (props: { 
   id: number, 
-  termPair: string[],
-  deleteTerm : (id: number) => void
+  card: string[],
+  deleteCard : (id: number) => void
   setDefValue : (id : number, value: string) => void,
   setTermValue : (id : number, value: string) => void,
-  incTermPos : (id: number) => void,
-  decTermPos : (id: number) => void,
+  incCardPos : (id: number) => void,
+  decCardPos : (id: number) => void,
 }) => {
   const updateInputSizing = () => {
     const term_input = document.getElementById(`create-term-${props.id}`);
@@ -24,7 +24,7 @@ const CreateTerm = (props: {
   }
 
   // update input sizing on termPair change
-  useEffect(updateInputSizing, [props.termPair]);
+  useEffect(updateInputSizing, [props.card]);
 
   // update input sizing on window resize
   useEffect(() => {
@@ -41,15 +41,15 @@ const CreateTerm = (props: {
         <div>{props.id + 1}</div>
         <div className={styles.term_ops}>
           <div
-            onClick={() => props.incTermPos(props.id)}
+            onClick={() => props.incCardPos(props.id)}
             title="Move term down"
           >↓</div>
           <div
-            onClick={() => props.decTermPos(props.id)}
+            onClick={() => props.decCardPos(props.id)}
             title="Move term up"
           >↑</div>
           <div
-            onClick={() => props.deleteTerm(props.id)}
+            onClick={() => props.deleteCard(props.id)}
             title="Delete term"
           >X</div>
         </div>
@@ -60,7 +60,7 @@ const CreateTerm = (props: {
             id={`create-term-${props.id}`}
             placeholder="Term"
             className={styles.text_area}
-            value={props.termPair[0]}
+            value={props.card[0]}
             onChange={e => {props.setTermValue(props.id, e.target.value); updateInputSizing()}}
           />
           <p>Term</p>
@@ -70,7 +70,7 @@ const CreateTerm = (props: {
             id={`create-def-${props.id}`}
             placeholder="Definition"
             className={styles.text_area}
-            value={props.termPair[1]}
+            value={props.card[1]}
             onChange={e => {props.setDefValue(props.id, e.target.value); updateInputSizing()}}
           />
           <p>Definition</p>
@@ -80,4 +80,4 @@ const CreateTerm = (props: {
   )
 }
 
-export default CreateTerm;
+export default CreateCard;
