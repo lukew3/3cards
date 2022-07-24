@@ -38,9 +38,15 @@
     word-break: break-word;
     user-select: none;
     padding: 1rem;
+    border-radius: 10px;
+}
+
+.card_front {
+    border-top: 1px solid var(--box-border);
 }
 
 .card_back {
+    border-bottom: 1px solid var(--box-border);
     transform: rotateX(180deg);
 }
 
