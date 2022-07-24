@@ -41,7 +41,12 @@ const Cards = (props: {
         className={styles.card}
         onClick={toggleShowingTerm}
       >
-        {showingTerm ? props.terms[termId][0] : props.terms[termId][1]}
+        <div className={styles.card_front}>
+          {props.terms[termId][0]}
+        </div>
+        <div className={styles.card_back}>
+          {props.terms[termId][1]}
+        </div>
       </div>
       <div className={styles.controls}>
         <button onClick={showPrev}>&lt;</button>
