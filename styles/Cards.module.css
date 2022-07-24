@@ -8,12 +8,19 @@
 
 .cards_list {
     flex-grow: 2;
-    scroll-snap-type: x mandatory;
-    width: 500px;
+    width: 600px;
     display: flex;
     -webkit-overflow-scrolling: touch;
 	overflow-x: scroll;
     overflow-y: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-snap-type: mandatory;
+    scroll-snap-type: x mandatory;
+}
+
+.cards_list::-webkit-scrollbar {
+    display: none;
 }
 
 .card {
@@ -21,10 +28,11 @@
     font-size: 14pt;
     border-radius: 10px;
     height: 100%;
-    width: 500px;
+    min-width: 500px;
+    margin: 0 20px;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     position: relative;
 }
 
