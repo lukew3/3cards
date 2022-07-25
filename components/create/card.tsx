@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import styles from '../styles/CreateCard.module.css';
+import styles from '../../styles/create/Card.module.css';
 
 const CreateCard = (props: { 
   id: number, 

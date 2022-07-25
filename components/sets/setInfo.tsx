@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import styles from '../styles/SetInfo.module.css'
-import rootPath from '../utils/rootPath';
+import styles from '../../styles/sets/SetInfo.module.css'
+import rootPath from '../../utils/rootPath';
 
 interface SetData {
   tx_id: string,

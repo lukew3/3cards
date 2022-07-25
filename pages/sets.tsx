@@ -4,8 +4,8 @@ import Arweave from 'arweave';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import SetInfo from '../components/setInfo';
-import styles from '../styles/Sets.module.css';
+import SetInfo from '../components/sets/setInfo';
+import styles from '../styles/sets/Sets.module.css';
 import rootPath from '../utils/rootPath';
 
 interface SetData {

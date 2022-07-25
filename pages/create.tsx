@@ -3,9 +3,9 @@ import Head from 'next/head';
 import Router from 'next/router';
 import Arweave from 'arweave';
 import React, { useState } from 'react';
-import CreateCard from '../components/createCard';
+import CreateCard from '../components/create/card';
 import ImportFloater from '../components/importFloater';
-import styles from '../styles/Create.module.css'
+import styles from '../styles/create/Create.module.css'
 
 const Create: NextPage = () => {
   const arweave = Arweave.init({});

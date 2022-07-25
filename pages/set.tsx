@@ -2,9 +2,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Arweave from 'arweave';
 import { useState } from 'react';
-import SetCard from '../components/setCard';
+import SetCard from '../components/set/card';
 import CardsApplet from '../components/cardsApplet';
-import styles from '../styles/Set.module.css'
+import styles from '../styles/set/Set.module.css'
 
 interface Tag {
   name: string,

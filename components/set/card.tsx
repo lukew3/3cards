@@ -1,4 +1,4 @@
-import styles from '../styles/SetCard.module.css'
+import styles from '../../styles/set/Card.module.css'
 
 const SetCard = (props: {
   id: number, 
