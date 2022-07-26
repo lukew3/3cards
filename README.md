@@ -13,7 +13,7 @@ Available at
 https://lukew3-3cards.netlify.app and
 https://arweave.net/S3V-IVqbDWxqM09BarzgVsHPvfHyYhoLFsnXm2AK85c
 
-You can see what changes are coming next at https://github.com/lukew3/3cards/projects/1
+You can see what changes are coming next at https://github.com/users/lukew3/projects/6
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
