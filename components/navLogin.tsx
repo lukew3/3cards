@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
 import { ArweaveWebWallet } from 'arweave-wallet-connector';
-import Arweave from 'arweave';
 import styles from '../styles/Nav.module.css'
-import { SocketAddress } from 'net';
+import ConnectFloater from './connectFloater';
 
 
 const NavLogin = (props: {
   loggedIn: boolean,
   setAddress: (address: string) => void
 }) => {
-  const arweave = Arweave.init({});
+  const [showingFloater, setShowingFloater] = useState(false);
+
+  useEffect(() => {
+    console.log(showingFloater);
+  }, [showingFloater]);
+
   const webWallet = new ArweaveWebWallet({
     name: '3cards',
     logo: 'https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg'
@@ -26,45 +30,16 @@ const NavLogin = (props: {
   const connectWallet = async () => {
     // Connect with arweave.app
     if (props.loggedIn) {
-        webWallet.disconnect();
+      webWallet.disconnect();
     } else {
+      if (window.localStorage.getItem('hasLoggedIn')) {
         webWallet.connect();
-    }
-  }
-
-  const connectWalletArconnect = async () => {
-    if (props.loggedIn) {
-      window.arweaveWallet?.disconnect();
-      props.setAddress('');
-    } else {
-      if (window.arweaveWallet == undefined) {
-        alert('Arconnect not installed. Go to https://arconnnect.io to get started.');
       } else {
-        await window.arweaveWallet.connect(['ACCESS_ADDRESS', 'SIGN_TRANSACTION']);
-        window.arweaveWallet.getActiveAddress().then((address) => {
-          props.setAddress(address);
-        }).catch(err => {
-          console.log(err);
-        })
+        // Display connect floater
+        setShowingFloater(true);
       }
     }
   }
-
-  /*
-  useEffect(() => {
-    setTimeout(async () => {
-      // Set initial login state
-      // Currently doesn't work since login isn't saved between sessions, right?
-      if (window.arweaveWallet == undefined) return;
-      const address = await window.arweaveWallet.getActiveAddress();
-      if (address) {
-        props.setAddress(address);
-      } else {
-        props.setAddress('');
-      }
-    }, 0);
-  })
-  */
 
   return(
     <div
@@ -72,6 +47,10 @@ const NavLogin = (props: {
       onClick={connectWallet}
     >
       {props.loggedIn ? 'Logout' : 'Login'}
+      {showingFloater ?
+        <ConnectFloater
+          closeFloater={() => setShowingFloater(false)}
+        /> : null}
     </div>
   )
 }

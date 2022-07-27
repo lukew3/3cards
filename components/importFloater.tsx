@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/ImportFloater.module.css'
 
 const ImportFloater = (props: {
-    closeImport: () => void,
+    closeFloater: () => void,
     setCards: (cards : string[][]) => void,
 }) => {
     const [cardCount, setCardCount] = useState(0);
@@ -24,7 +24,7 @@ const ImportFloater = (props: {
 
     const importSet = () => {
         props.setCards(newCards);
-        props.closeImport();
+        props.closeFloater();
     }
 
     return (
@@ -32,7 +32,7 @@ const ImportFloater = (props: {
             <div className={styles.floater}>
                 <div 
                     className={styles.close_button}
-                    onClick={props.closeImport}
+                    onClick={props.closeFloater}
                 >X</div>
                 <h3>Import</h3>
                 <textarea
