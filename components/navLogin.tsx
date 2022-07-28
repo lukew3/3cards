@@ -15,7 +15,9 @@ const NavLogin = (props: {
     logo: 'https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg'
   }, 'arweave.app')
   webWallet.on('connect', (address : string) => {
+    setShowingFloater(false);
     props.setAddress(address);
+    window.localStorage.setItem('hasLoggedIn', 'true');
     console.log('connected at address: ' + address);
   })
   webWallet.on('disconnect', () => {
@@ -27,13 +29,11 @@ const NavLogin = (props: {
     // Connect with arweave.app
     if (props.loggedIn) {
       webWallet.disconnect();
+    } else if (window.localStorage.getItem('hasLoggedIn')) {
+      webWallet.connect();
     } else {
-      if (window.localStorage.getItem('hasLoggedIn')) {
-        webWallet.connect();
-      } else {
-        // Display connect floater
-        setShowingFloater(true);
-      }
+      // Display connect floater
+      setShowingFloater(true);
     }
   }
 
@@ -48,6 +48,7 @@ const NavLogin = (props: {
       {showingFloater ?
         <ConnectFloater
           closeFloater={() => setShowingFloater(false)}
+          connect={() => {webWallet.connect()}}
         /> : null}
     </div>
     
