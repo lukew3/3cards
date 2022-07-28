@@ -9,21 +9,25 @@ const NavLogin = (props: {
   setAddress: (address: string) => void
 }) => {
   const [showingFloater, setShowingFloater] = useState(false);
+  const [webWallet, setWebWallet] = useState<any>();
 
-  const webWallet = new ArweaveWebWallet({
-    name: '3cards',
-    logo: 'https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg'
-  }, 'arweave.app')
-  webWallet.on('connect', (address : string) => {
-    setShowingFloater(false);
-    props.setAddress(address);
-    window.localStorage.setItem('hasLoggedIn', 'true');
-    console.log('connected at address: ' + address);
-  })
-  webWallet.on('disconnect', () => {
-    props.setAddress('');
-    console.log('disconnected');
-  })
+  useEffect(() => {
+    const newWebWallet = new ArweaveWebWallet({
+      name: '3cards',
+      logo: 'https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg'
+    }, 'arweave.app')
+    newWebWallet.on('connect', (address : string) => {
+      setShowingFloater(false);
+      props.setAddress(address);
+      window.localStorage.setItem('hasLoggedIn', 'true');
+      console.log('connected at address: ' + address);
+    })
+    newWebWallet.on('disconnect', () => {
+      props.setAddress('');
+      console.log('disconnected');
+    });
+    setWebWallet(newWebWallet);
+  }, [])
 
   const connectWallet = async () => {
     // Connect with arweave.app
