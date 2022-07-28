@@ -10,10 +10,6 @@ const NavLogin = (props: {
 }) => {
   const [showingFloater, setShowingFloater] = useState(false);
 
-  useEffect(() => {
-    console.log(showingFloater);
-  }, [showingFloater]);
-
   const webWallet = new ArweaveWebWallet({
     name: '3cards',
     logo: 'https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg'
@@ -42,16 +38,19 @@ const NavLogin = (props: {
   }
 
   return(
-    <div
-      className={styles.login_text}
-      onClick={connectWallet}
-    >
-      {props.loggedIn ? 'Logout' : 'Login'}
+    <div className={styles.login_group}>
+      <div
+        className={styles.login_text}
+        onClick={connectWallet}
+      >
+        {props.loggedIn ? 'Logout' : 'Login'}
+      </div>
       {showingFloater ?
         <ConnectFloater
           closeFloater={() => setShowingFloater(false)}
         /> : null}
     </div>
+    
   )
 }
 
