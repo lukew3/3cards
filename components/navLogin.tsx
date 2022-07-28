@@ -18,7 +18,7 @@ const NavLogin = (props: {
     name: '3cards',
     logo: 'https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg'
   }, 'arweave.app')
-  webWallet.on('connect', (address) => {
+  webWallet.on('connect', (address : string) => {
     props.setAddress(address);
     console.log('connected at address: ' + address);
   })
