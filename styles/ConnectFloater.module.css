@@ -1,0 +1,44 @@
+.background {
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floater {
+    width: 500px;
+    height: 500px;
+    background-color: var(--box-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.close_button {
+    align-self: flex-end;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 15px;
+    background-color: var(--op-button-bg);
+    border-radius: 3px;
+    margin: -1rem;
+    margin-bottom: -2rem;
+}
+
+.connect_button {
+    padding: 0.8em 0;
+    min-width: 150px;
+    border-radius: 8px;
+    border: var(--text) 1px solid;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+  }

@@ -93,7 +93,7 @@ const Create: NextPage = () => {
         >Import</div>
         { showingImport ?
             <ImportFloater
-              closeImport={() => setShowingImport(false)}
+              closeFloater={() => setShowingImport(false)}
               setCards={setCards}
             /> : null }
         <div className={styles.title_group}>
