@@ -32,3 +32,13 @@
     margin: -1rem;
     margin-bottom: -2rem;
 }
+
+.connect_button {
+    padding: 0.8em 0;
+    min-width: 150px;
+    border-radius: 8px;
+    border: var(--text) 1px solid;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+  }

@@ -18,7 +18,7 @@ const ConnectFloater = (props: {
                     Otherwise, follow the sign up process at arweave.app and connect when you are done.
                 </p>
                 <div
-                    className={styles.button_group}
+                    className={styles.connect_button}
                     onClick={props.connect}
                 >
                     Connect at arweave.app
