@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+.sets {
+  width: 100%;
+  max-width: 1200px;
+}
+
 .page_control {
   width: 4rem;
   display: flex;
