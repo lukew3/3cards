@@ -1,29 +1,34 @@
 import { useEffect, useState } from 'react';
 import { ArweaveWebWallet } from 'arweave-wallet-connector';
+import Link from 'next/link';
 import styles from '../styles/Nav.module.css'
 import ConnectFloater from './connectFloater';
+import rootPath from '../utils/rootPath';
 
 
 const NavLogin = (props: {
   loggedIn: boolean,
-  setAddress: (address: string) => void
+  setLoggedIn: (loggedIn: boolean) => void,
 }) => {
   const [showingFloater, setShowingFloater] = useState(false);
   const [webWallet, setWebWallet] = useState<any>();
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     const newWebWallet = new ArweaveWebWallet({
       name: '3cards',
       logo: 'https://user-images.githubusercontent.com/47042841/179059165-24a274d4-9262-4709-a702-22df7101ea93.svg'
     }, 'arweave.app')
-    newWebWallet.on('connect', (address : string) => {
+    newWebWallet.on('connect', (address: string) => {
       setShowingFloater(false);
-      props.setAddress(address);
+      setAddress(address);
+      props.setLoggedIn(true);
       window.localStorage.setItem('hasLoggedIn', 'true');
       console.log('connected at address: ' + address);
     })
     newWebWallet.on('disconnect', () => {
-      props.setAddress('');
+      setAddress('');
+      props.setLoggedIn(false);
       console.log('disconnected');
     });
     setWebWallet(newWebWallet);
@@ -41,23 +46,30 @@ const NavLogin = (props: {
     }
   }
 
-  return(
+  return (
     <div className={styles.login_group}>
       <div
         className={styles.login_text}
-        onClick={connectWallet}
       >
         {props.loggedIn ?
-          <div><img src="/images/user.svg" className={styles.nav_svg} />Logout</div> : 
-          <div><img src="/images/signin.svg" className={styles.nav_svg} />Login</div>}
+          <Link href={{ pathname: `${rootPath()}/sets`, query: { owner: address } }}>
+            <a>
+              <img src="/images/user.svg" className={styles.nav_svg} />
+              <label>My Sets</label>
+            </a>
+          </Link> :
+          <a onClick={connectWallet}>
+            <img src="/images/signin.svg" className={styles.nav_svg} />
+            <label>Login</label>
+          </a>}
       </div>
       {showingFloater ?
         <ConnectFloater
           closeFloater={() => setShowingFloater(false)}
-          connect={() => {webWallet.connect()}}
+          connect={() => { webWallet.connect() }}
         /> : null}
     </div>
-    
+
   )
 }
 

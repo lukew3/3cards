@@ -9,13 +9,7 @@ const NavLogin = dynamic(() => import('./navLogin'), {
 })
 
 const Nav = () => {
-  const [address, setAddress] = useState('');
-
-  const renderMySetsLink = () => {
-    if (address !== '') {
-      return <Link href={{pathname: `${rootPath()}/sets`, query: {owner: address}}}><a>My Sets</a></Link>;
-    }
-  }
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <nav className={styles.nav_cont}>
@@ -29,7 +23,6 @@ const Nav = () => {
             Find Sets
           </a>
         </Link>
-        {renderMySetsLink()}
         <Link href={`${rootPath()}/create`}>
           <a>
             <img src="/images/plus.svg" className={styles.nav_svg}/>
@@ -37,8 +30,8 @@ const Nav = () => {
           </a>
         </Link>
         <NavLogin
-          loggedIn={Boolean(address)}
-          setAddress={setAddress}
+          loggedIn={loggedIn}
+          setLoggedIn={setLoggedIn}
         />
       </div>
     </nav>

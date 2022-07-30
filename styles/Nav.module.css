@@ -27,7 +27,7 @@
 .nav_svg {
     height: 1.5rem;
     padding: 0;
-    padding-right: 5px;
+    padding-right: 7px;
 }
 
 .login_group {
@@ -37,4 +37,9 @@
 .login_text {
     display: flex;
     align-items: center;
+    padding: 0;
+}
+
+.login_text a label {
+    padding: 0;
 }
