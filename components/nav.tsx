@@ -13,7 +13,12 @@ const Nav = () => {
 
   const renderMySetsLink = () => {
     if (address !== '') {
-      return <Link href={{pathname: `${rootPath()}/sets`, query: {owner: address}}}><a>My Sets</a></Link>;
+      return <Link href={{pathname: `${rootPath()}/sets`, query: {owner: address}}}>
+        <a>
+          <img src="/images/user.svg" className={styles.nav_svg}/>
+          <label>My Sets</label>
+        </a>
+      </Link>;
     }
   }
 
@@ -26,14 +31,14 @@ const Nav = () => {
         <Link href={`${rootPath()}/sets`}>
           <a>
             <img src="/images/search.svg" className={styles.nav_svg}/>
-            Find Sets
+            <label>Find Sets</label>
           </a>
         </Link>
         {renderMySetsLink()}
         <Link href={`${rootPath()}/create`}>
           <a>
             <img src="/images/plus.svg" className={styles.nav_svg}/>
-            Create Set
+            <label>Create Set</label>
           </a>
         </Link>
         <NavLogin

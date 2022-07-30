@@ -48,8 +48,14 @@ const NavLogin = (props: {
         onClick={connectWallet}
       >
         {props.loggedIn ?
-          <div><img src="/images/user.svg" className={styles.nav_svg} />Logout</div> : 
-          <div><img src="/images/signin.svg" className={styles.nav_svg} />Login</div>}
+          <div>
+            <img src="/images/signout.svg" className={styles.nav_svg} />
+            <label>Logout</label>
+          </div> : 
+          <div>
+            <img src="/images/signin.svg" className={styles.nav_svg} />
+            <label>Login</label>
+          </div>}
       </div>
       {showingFloater ?
         <ConnectFloater

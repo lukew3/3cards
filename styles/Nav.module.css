@@ -25,9 +25,8 @@
 }
 
 .nav_svg {
-    height: 1.5rem;
+    height: 1.3rem;
     padding: 0;
-    padding-right: 5px;
 }
 
 .login_group {
@@ -37,4 +36,5 @@
 .login_text {
     display: flex;
     align-items: center;
+    padding: 0;
 }
