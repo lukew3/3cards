@@ -55,12 +55,12 @@ const NavLogin = (props: {
           <Link href={{ pathname: `${rootPath()}/sets`, query: { owner: address } }}>
             <a>
               <img src="/images/user.svg" className={styles.nav_svg} />
-              <label>My Sets</label>
+              <label className={styles.nav_label}>My Sets</label>
             </a>
           </Link> :
           <a onClick={connectWallet}>
             <img src="/images/signin.svg" className={styles.nav_svg} />
-            <label>Login</label>
+            <label className={styles.nav_label}>Login</label>
           </a>}
       </div>
       {showingFloater ?

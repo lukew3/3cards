@@ -40,6 +40,16 @@
     padding: 0;
 }
 
-.login_text a label {
+.login_text a {
+    padding-right: 0;
+}
+
+.nav_label {
     padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .nav_label {
+    display: none;
+  }
 }

@@ -20,13 +20,13 @@ const Nav = () => {
         <Link href={`${rootPath()}/sets`}>
           <a>
             <img src="/images/search.svg" className={styles.nav_svg}/>
-            Find Sets
+            <label className={styles.nav_label}>Find Sets</label>
           </a>
         </Link>
         <Link href={`${rootPath()}/create`}>
           <a>
             <img src="/images/plus.svg" className={styles.nav_svg}/>
-            Create Set
+            <label className={styles.nav_label}>Create Set</label>
           </a>
         </Link>
         <NavLogin
