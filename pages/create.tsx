@@ -123,19 +123,18 @@ const Create: NextPage = () => {
               );
             })
           }
-          <div 
+          <button 
             className={styles.addItem} 
-            tabIndex={0}
             onClick={addCard}
           >
             <p>Add item +</p>
-          </div>
-          <div 
+          </button>
+          <button 
             className={styles.publish_button}
             onClick={publishSet}
           >
             Publish
-          </div>
+          </button>
         </div>
       </main>
     </div>

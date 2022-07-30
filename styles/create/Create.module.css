@@ -65,5 +65,6 @@
   float: right;
   cursor: pointer;
   background-color: var(--publish-button-bg);
-  width: fit-content
+  width: fit-content;
+  border: none;
 }
