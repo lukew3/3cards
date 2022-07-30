@@ -25,7 +25,7 @@
 }
 
 .nav_svg {
-    height: 1.5rem;
+    height: 1.2rem;
     padding: 0;
     padding-right: 7px;
 }
@@ -51,5 +51,9 @@
 @media screen and (max-width: 600px) {
   .nav_label {
     display: none;
+  }
+
+  .nav_svg {
+    height: 1.5rem;
   }
 }
