@@ -24,11 +24,17 @@ const Nav = () => {
       </Link>
       <div className={styles.nav_right}>
         <Link href={`${rootPath()}/sets`}>
-          <a>Find Sets</a>
+          <a>
+            <img src="/images/search.svg" className={styles.nav_svg}/>
+            Find Sets
+          </a>
         </Link>
         {renderMySetsLink()}
         <Link href={`${rootPath()}/create`}>
-          <a>Create Set</a>
+          <a>
+            <img src="/images/plus.svg" className={styles.nav_svg}/>
+            Create Set
+          </a>
         </Link>
         <NavLogin
           loggedIn={Boolean(address)}

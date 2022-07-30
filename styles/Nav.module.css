@@ -20,6 +20,14 @@
 .nav_right * {
     padding: 10px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.nav_svg {
+    height: 1.5rem;
+    padding: 0;
+    padding-right: 5px;
 }
 
 .login_group {

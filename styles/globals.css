@@ -20,6 +20,10 @@
     --term-divider: #2F2F2F;
     --placeholder: #A4A4A4;
   }
+  /* Set color of svgs */
+  img {
+    filter: invert(68%) sepia(95%) saturate(0%) hue-rotate(315deg) brightness(106%) contrast(109%); /* #E4E4E4 */
+  }
 }
 
 html,
