@@ -34,7 +34,7 @@
 }
 
 .connect_button {
-    padding: 0.8em 0;
+    padding: 0.8em;
     min-width: 150px;
     border-radius: 8px;
     border: var(--text) 1px solid;
