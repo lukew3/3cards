@@ -1,26 +1,21 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Arweave from 'arweave';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SetCard from '../../components/set/card';
 import CardsApplet from '../../components/cardsApplet';
 import styles from '../../styles/set/Set.module.css'
+import { loadSet } from '../../utils/lib';
+import { Set } from '../../types/types';
 
-interface Tag {
-  name: string,
-  value: string,
-}
-
-const Set: NextPage = () => {
+const SetPage: NextPage = () => {
   const arweave = Arweave.init({
     host: 'arweave.net',
     port: 443,
     protocol: 'https'
   });
-  const [title, setTitle] = useState('Unnamed Set');
-  const [cardsRetrieved, setCardsRetrieved] = useState(false);
+  const [set, setSet] = useState<Set>({title: '', cards: []});
   const [isLoading, setIsLoading] = useState(true);
-  const [cards, setCards] = useState([]);
   let tx_id : string;
   try {
     const params = new URLSearchParams(window.location.search);
@@ -30,36 +25,15 @@ const Set: NextPage = () => {
     tx_id = '';
   }
 
-  setTimeout(async () => {
-    if (!cardsRetrieved) {
-      console.log("Loading set");
-      if (tx_id == '') return;
-      // Get terms
-      arweave.api.get(tx_id).then(results => {
-        setCards(results.data);
-        setCardsRetrieved(true);
-        setIsLoading(false);
-      }).catch(() => {
-        console.log("Could not load set");
-        setIsLoading(false);
-      })
-      const tags_query = `{
-        transactions(
-          first: 1
-          ids: ["${tx_id}"]
-        ) {
-          edges { node { tags { name value } } }
-        }
-      }`
-      arweave.api.post('/graphql', {query: tags_query}).then((results) => {
-        const tags = results.data.data.transactions.edges[0].node.tags;
-        const title = tags.find((tag : Tag) => tag.name == 'Title').value;
-        setTitle(title);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-  }, 0)
+  useEffect(() => {
+    loadSet(tx_id).then(response => {
+      setSet(response);
+    }).catch(error => {
+      console.log(error);
+    }).finally(() => {
+      setIsLoading(false);
+    })
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -70,7 +44,7 @@ const Set: NextPage = () => {
         <h3>View Set</h3>
         { isLoading ? 
             <div className="lds-dual-ring"></div> : 
-            cards.length === 0 ? <p>Set not found</p> : <SetContent cards={cards} title={title} /> }
+            set.cards.length === 0 ? <p>Set not found</p> : <SetContent cards={set.cards} title={set.title} /> }
       </main>
     </div>
   )
@@ -101,4 +75,4 @@ const SetContent = (props: {
   </div>
 }
 
-export default Set
+export default SetPage

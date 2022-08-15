@@ -3,7 +3,7 @@ import { ArweaveWebWallet } from 'arweave-wallet-connector';
 import Link from 'next/link';
 import styles from '../styles/Nav.module.css'
 import ConnectFloater from './connectFloater';
-import rootPath from '../utils/rootPath';
+import { rootPath } from '../utils/lib';
 
 
 const NavLogin = (props: {

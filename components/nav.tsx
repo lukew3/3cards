@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from '../styles/Nav.module.css'
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import rootPath from '../utils/rootPath';
+import { rootPath } from '../utils/lib';
 
 const NavLogin = dynamic(() => import('./navLogin'), {
   ssr: false,

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SetInfo from '../components/sets/setInfo';
 import styles from '../styles/sets/Sets.module.css';
-import rootPath from '../utils/rootPath';
+import { rootPath } from '../utils/lib';
 
 interface SetData {
   tx_id: string,

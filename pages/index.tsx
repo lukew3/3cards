@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-import rootPath from '../utils/rootPath';
+import { rootPath } from '../utils/lib';
 
 const Home: NextPage = () => {
   return (
