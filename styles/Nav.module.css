@@ -44,7 +44,7 @@
     padding-right: 0;
 }
 
-.nav_label {
+.nav_label, .nav_label_nohide {
     padding: 0;
 }
 

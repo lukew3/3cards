@@ -60,7 +60,7 @@ const NavLogin = (props: {
           </Link> :
           <a onClick={connectWallet}>
             <img src="/images/signin.svg" className={styles.nav_svg} />
-            <label className={styles.nav_label}>Login</label>
+            <label className={styles.nav_label_nohide}>Login</label>
           </a>}
       </div>
       {showingFloater ?
