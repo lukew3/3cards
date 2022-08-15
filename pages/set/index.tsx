@@ -16,16 +16,9 @@ const SetPage: NextPage = () => {
   });
   const [set, setSet] = useState<Set>({title: '', cards: []});
   const [isLoading, setIsLoading] = useState(true);
-  let tx_id : string;
-  try {
-    const params = new URLSearchParams(window.location.search);
-    tx_id = params.get('tx_id') || '';
-  } catch {
-    // catch when window undefined (e.g. in server-side rendering)
-    tx_id = '';
-  }
 
   useEffect(() => {
+    let tx_id : string = (new URLSearchParams(window.location.search)).get('tx_id') || '';
     loadSet(tx_id).then(response => {
       setSet(response);
     }).catch(error => {
