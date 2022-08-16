@@ -3,8 +3,6 @@ import { ArweaveWebWallet } from 'arweave-wallet-connector';
 import Link from 'next/link';
 import styles from '../styles/Nav.module.css'
 import ConnectFloater from './connectFloater';
-import { rootPath } from '../utils/lib';
-
 
 const NavLogin = (props: {
   loggedIn: boolean,
@@ -52,7 +50,7 @@ const NavLogin = (props: {
         className={styles.login_text}
       >
         {props.loggedIn ?
-          <Link href={{ pathname: `${rootPath()}/sets`, query: { owner: address } }}>
+          <Link href={{ pathname: `/sets`, query: { owner: address } }}>
             <a>
               <img src="/images/user.svg" className={styles.nav_svg} />
               <label className={styles.nav_label}>My Sets</label>

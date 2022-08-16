@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import SetInfo from '../components/sets/setInfo';
 import styles from '../styles/sets/Sets.module.css';
-import { rootPath } from '../utils/lib';
 
 interface SetData {
   tx_id: string,
@@ -128,7 +127,7 @@ const Set: NextPage = () => {
         </div>
         <div className={styles.page_control}>
           <p>&lt;</p>
-          <Link href={`${rootPath()}${buildNextUrl()}`}>
+          <Link href={`${buildNextUrl()}`}>
             <p>&gt;</p>
           </Link>
         </div>
