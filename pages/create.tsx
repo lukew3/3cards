@@ -81,7 +81,7 @@ const Create: NextPage = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className='container'>
       <Head>
         <title>Create Set - 3cards</title>
       </Head>

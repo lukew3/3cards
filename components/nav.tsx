@@ -11,7 +11,7 @@ const Nav = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   return (
-    <nav className={styles.nav_cont}>
+    <nav className={`${styles.nav_cont} container`}>
       <Link href={`/`}>
         <a><h1 className={styles.title_link}>3cards</h1></a>
       </Link>

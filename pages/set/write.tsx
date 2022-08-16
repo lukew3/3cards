@@ -28,7 +28,7 @@ const SetPage: NextPage = () => {
   }, [])
 
   return (
-    <div className={styles.container}>
+    <div className='container'>
       <Head>
         <title>View Set - 3cards</title>
       </Head>

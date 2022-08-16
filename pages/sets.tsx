@@ -103,7 +103,7 @@ const Set: NextPage = () => {
   }, [router.asPath])
 
   return (
-    <div className={styles.container}>
+    <div className='container'>
       <Head>
         <title>Find Sets - 3cards</title>
       </Head>
