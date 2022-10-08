@@ -10,7 +10,8 @@
 Flashcards on web3. Permanently stored, owned by you and resistant to authoritative control. Powered by [arweave](https://www.arweave.org/).
 
 Available at
-https://lukew3-3cards.netlify.app and
+https://3cards.io
+or https://lukew3-3cards.netlify.app or
 https://arweave.net/S3V-IVqbDWxqM09BarzgVsHPvfHyYhoLFsnXm2AK85c
 
 You can see what changes are coming next at https://github.com/users/lukew3/projects/6
